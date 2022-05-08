@@ -19,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater()); //Создаем объект класса ResultProfileBinding – в binding все id
         setContentView(binding.getRoot()); // Корневая id – Activity main
 
+
         replaceFragment(new HomeFragment()); // Чтобы при открытии приложения показывался HomeFragment
+
 
         binding.bottomNavigationView.setOnItemSelectedListener(item -> { // Слушатель нажатия на  bottomNavigationView
 

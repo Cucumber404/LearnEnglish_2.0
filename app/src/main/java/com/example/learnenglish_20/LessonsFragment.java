@@ -7,20 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.learnenglish_20.databinding.ActivityMainBinding;
+public class LessonsFragment extends Fragment implements AdapterView.OnItemClickListener {
 
-import java.util.ArrayList;
-
-public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
-
-    private String[] modulesArr = new String[] {"Модуль 1" , "Модуль 2", "Модуль 3"};
-    private ListView modulesList;
+    private String[] lessonsArr = new String[] {"Модуль 1" , "Модуль 2", "Модуль 3"};
+    private ListView lessonsList;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,9 +32,9 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         // Inflate the layout for this fragment
 
 
-        modulesList =  view.findViewById(R.id.modules_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),R.layout.modules_lessons_list, R.id.button, modulesArr);
-        modulesList.setAdapter(adapter);
+        lessonsList =  view.findViewById(R.id.modules_list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),R.layout.modules_lessons_list, R.id.button, lessonsArr);
+        lessonsList.setAdapter(adapter);
 
         return view;
     }

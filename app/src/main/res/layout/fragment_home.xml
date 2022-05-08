@@ -3,12 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/bg_main"
     tools:context=".HomeFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <!--
 
-        <TextView
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="72dp"
+        android:layout_height="52dp"
+        android:background=""
+        app:icon="@android:drawable/alert_dark_frame" />
+-->
+
+
+    <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="101sp"
@@ -17,7 +28,11 @@
             android:textColor="@color/purple_700"
             android:textSize="45sp" />
 
-
+    <ListView
+        android:id="@+id/modules_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="90dp" />
 
 
 </FrameLayout>
