@@ -8,12 +8,16 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:textColor="@color/white"
+        android:layout_marginVertical="10sp"
         android:background="@color/purple_700_light"
         android:fontFamily="@font/chewy"
+        android:gravity="center"
         android:text="asdf"
+        android:textColor="@color/white"
         android:textSize="30dp"
         app:cornerRadius="40dp"
-        android:gravity="center"
-        android:layout_marginVertical="10sp"/>
+        />
+
+
+
 </LinearLayout>

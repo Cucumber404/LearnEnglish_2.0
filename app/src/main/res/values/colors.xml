@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="bg_main">#F1F1F1</color>
     <color name="purple_700_light">#46bee6</color>
+    <color name="bottom_item">#12799C</color>
 </resources>
