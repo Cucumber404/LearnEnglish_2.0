@@ -7,12 +7,17 @@
     tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello from Home Fragment"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="101sp"
+            android:fontFamily="@font/chewy"
+            android:text="@string/top_text"
+            android:textColor="@color/purple_700"
+            android:textSize="45sp" />
+
+
+
 
 </FrameLayout>

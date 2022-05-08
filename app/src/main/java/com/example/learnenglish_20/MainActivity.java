@@ -40,11 +40,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void replaceFragment(Fragment fragment){ // Замена фрагмента
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
-
     }
 }
