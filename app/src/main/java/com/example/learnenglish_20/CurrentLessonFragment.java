@@ -33,6 +33,8 @@ public class CurrentLessonFragment extends Fragment {
             replaceFragment(new LessonsFragment());
         });
 
+        //SOME TEST
+
         ArrayList<WordPair> wordPairs = new ArrayList<WordPair>();
             super.onCreate(savedInstanceState);
             // начальная инициализация списка
