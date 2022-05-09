@@ -33,7 +33,10 @@ public class CurrentLessonFragment extends Fragment {
             replaceFragment(new LessonsFragment());
         });
 
-        //SOME TEST
+        //SOME TEST orjgnoor oeir oeigeigneoirgneerg oeerereog
+        for(int i=0;i<5;i++){
+
+        }
 
         ArrayList<WordPair> wordPairs = new ArrayList<WordPair>();
             super.onCreate(savedInstanceState);
