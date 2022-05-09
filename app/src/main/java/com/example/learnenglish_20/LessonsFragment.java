@@ -25,16 +25,16 @@ public class LessonsFragment extends Fragment implements AdapterView.OnItemClick
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.lessons_fragment, container, false);
 
-        // Inflate the layout for this fragment
-
         lessonsList =  view.findViewById(R.id.lessons_list);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),R.layout.modules_lessons_list, R.id.button, lessonsArr);
         lessonsList.setAdapter(adapter);
+        lessonsList.setOnItemClickListener(this);
 
         imageButtontoHome =  view.findViewById(R.id.imageButtonToHome);
         imageButtontoHome.setOnClickListener(b->{
             replaceFragment(new HomeFragment());
         });
+
 
         return view;
     }
