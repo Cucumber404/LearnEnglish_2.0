@@ -3,4 +3,10 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="top_text">LearnWords</string>
+    <string name="bt_learn">Учить</string>
+    <string name="bt_translate">Перевод</string>
+    <string name="bt_match">Ряд</string>
+    <string name="bt_picture">Картинка</string>
+    <string name="bt_write">Напиши</string>
+    <string name="bt_plit">Плитки</string>
 </resources>

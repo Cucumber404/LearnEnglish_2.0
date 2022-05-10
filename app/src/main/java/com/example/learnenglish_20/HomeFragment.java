@@ -9,19 +9,15 @@ import androidx.fragment.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
-
-import com.example.learnenglish_20.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
 
-    private String[] modulesArr = new String[] {"Модуль 1" , "Модуль 2", "Модуль 3"};
+    private ArrayList<String> chaptersArr;
     private ListView modulesList;
 
     @Override
@@ -29,18 +25,34 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        modulesList =  view.findViewById(R.id.modules_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),R.layout.modules_lessons_list, R.id.button, modulesArr);
-        modulesList.setAdapter(adapter);
+        initChaptersArr(); // Определяем сколько глав у нас будет
 
-        modulesList.setOnItemClickListener(this);
+        initModulesList(view); // Создаем список глав
 
         return view;
     }
 
+    private void initChaptersArr() {
+        chaptersArr = new ArrayList<>();
+        int i=1;
+        int size = MainActivity.wordsArr.size();
+        while (size > 0){
+            chaptersArr.add("Глава "+i);
+            i++;
+            size-=100;
+        }
+    }
+
+    private void initModulesList(View view) {
+        modulesList =  view.findViewById(R.id.modules_list);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),R.layout.modules_lessons_list, R.id.button, chaptersArr);
+        modulesList.setAdapter(adapter);
+        modulesList.setOnItemClickListener(this);
+    }
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        replaceFragment(new LessonsFragment());
+        replaceFragment(new LessonsFragment(position)); // При нажатии на главу открывается фрагмент с уроками
     }
 
     public void replaceFragment(Fragment fragment){ // Замена фрагмента
