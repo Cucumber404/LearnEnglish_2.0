@@ -10,5 +10,10 @@
     <color name="bg_main">#F1F1F1</color>
     <color name="purple_700_light">#46bee6</color>
     <color name="bottom_item">#12799C</color>
-    <color name="words_list">#1D8320</color>
+    <color name="green">#1D8320</color>
+    <color name="blue">#263CB6</color>
+    <color name="dark_blue">#253693</color>
+    <color name="light_blue">#286EA3</color>
+    <color name="light_green">#288C17</color>
+    <color name="light_red">#AA3939</color>
 </resources>

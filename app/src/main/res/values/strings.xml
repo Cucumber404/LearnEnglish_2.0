@@ -4,9 +4,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="top_text">LearnWords</string>
     <string name="bt_learn">Учить</string>
-    <string name="bt_translate">Перевод</string>
-    <string name="bt_match">Ряд</string>
-    <string name="bt_picture">Картинка</string>
-    <string name="bt_write">Напиши</string>
+    <string name="bt_translate">Расставь</string>
+    <string name="bt_pair">Пары</string>
+    <string name="bt_choose">Выбрать</string>
+    <string name="bt_collect">Собрать</string>
     <string name="bt_plit">Плитки</string>
+    <string name="bt_test">Тест</string>
+    <string name="bt_pic">Картинка</string>
+    <string name="learn_next">Следующее</string>
+    <string name="learn_memo">запомнил!</string>
+    <string name="learn_not_memo">не запомнил</string>
 </resources>

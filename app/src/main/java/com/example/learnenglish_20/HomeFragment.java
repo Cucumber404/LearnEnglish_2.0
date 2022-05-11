@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     private void initChaptersArr() {
         chaptersArr = new ArrayList<>();
         int i=1;
-        int size = MainActivity.wordsArr.size();
+        int size = DataBase.wordsArr.size();
         while (size > 0){
             chaptersArr.add("Глава "+i);
             i++;

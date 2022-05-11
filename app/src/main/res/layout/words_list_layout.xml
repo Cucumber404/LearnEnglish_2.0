@@ -17,7 +17,7 @@
             android:layout_weight="1.2"
             android:fontFamily="@font/chewy"
             android:text="TextView"
-            android:textColor="@color/words_list"
+            android:textColor="@color/light_blue"
             android:textSize="25dp" />
 
         <TextView
@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/chewy"
             android:text="TextView"
-            android:textColor="@color/words_list"
+            android:textColor="@color/light_blue"
             android:textSize="25dp" />
     </LinearLayout>
 

@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="80dp"
         android:layout_marginHorizontal="25dp"
-        android:layout_marginBottom="155dp"
+        android:layout_marginBottom="190dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
 
         />
@@ -23,7 +23,7 @@
 
 
     <ImageButton
-        android:id="@+id/imageButtonToLessons"
+        android:id="@+id/imageButtonToLesson"
         android:layout_width="48dp"
         android:layout_height="49dp"
         android:layout_marginStart="20dp"
@@ -46,11 +46,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="470dp"
+        android:layout_marginTop="440dp"
         android:layout_marginHorizontal="25dp"
         >
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/bt_learn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,19 +60,19 @@
             />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/bt_pic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/bt_translate"
+            android:text="@string/bt_pic"
             android:backgroundTint="@color/purple_700_light"/>
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/bt_pair"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/bt_match"
+            android:text="@string/bt_pair"
             android:layout_marginStart="15dp"
             android:backgroundTint="@color/purple_700_light"/>
     </LinearLayout>
@@ -81,35 +81,53 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="535dp"
+        android:layout_marginTop="495dp"
         android:layout_marginHorizontal="25dp"
         >
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/bt_choose"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/bt_picture"
+            android:text="@string/bt_choose"
             android:layout_marginEnd="15dp"
             android:backgroundTint="@color/purple_700_light"/>
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/bt_collect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/bt_write"
+            android:text="@string/bt_collect"
             android:backgroundTint="@color/purple_700_light"/>
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/bt_plit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/bt_plit"
             android:layout_marginStart="15dp"
             android:backgroundTint="@color/purple_700_light"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="550dp"
+        android:layout_marginHorizontal="25dp"
+        >
+
+        <Button
+            android:id="@+id/bt_test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/bt_test"
+            android:backgroundTint="@color/blue"/>
+
     </LinearLayout>
 
 
