@@ -24,13 +24,19 @@ public class CurrentLessonFragment extends Fragment {
     private int lesson;
     private ImageButton imageButtonToLessons;
     public static List<Word> currentLessonWordsArr = new ArrayList<>();
-    Button btLearn;
+    Button btLearn, btCardsEnRu, btCardsRuEn;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_current_lesson, container, false);
 
+        init(savedInstanceState, view);
+
+        return view;
+    }
+
+    private void init(Bundle savedInstanceState, View view) {
         initBackButton(view);
 
         setCurrentWordsArr();
@@ -39,7 +45,31 @@ public class CurrentLessonFragment extends Fragment {
 
         initBtLearn(view);
 
-        return view;
+        initEnRuButton(view);
+
+        initRuEnButton(view);
+    }
+
+    private void initRuEnButton(View view) {
+        btCardsRuEn = view.findViewById(R.id.bt_cards_ru_en);
+        btCardsRuEn.setOnClickListener(b->{
+            Intent intent = new Intent(getActivity().getApplicationContext(), CardsActivity.class);
+            intent.putExtra(Constants.CHAPTER_KEY, chapter);
+            intent.putExtra(Constants.LESSON_KEY, lesson);
+            intent.putExtra(Constants.ORDER_KEY,Constants.ORDER_RU_EN);
+            startActivity(intent);
+        });
+    }
+
+    private void initEnRuButton(View view) {
+        btCardsEnRu = view.findViewById(R.id.bt_cards_en_ru);
+        btCardsEnRu.setOnClickListener(b->{
+            Intent intent = new Intent(getActivity().getApplicationContext(), CardsActivity.class);
+            intent.putExtra(Constants.ORDER_KEY,Constants.ORDER_EN_RU);
+            intent.putExtra(Constants.CHAPTER_KEY, chapter);
+            intent.putExtra(Constants.LESSON_KEY, lesson);
+            startActivity(intent);
+        });
     }
 
     private void initBtLearn(View view) {
@@ -49,8 +79,8 @@ public class CurrentLessonFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity().getApplicationContext(), LearnActivity.class);
-                intent.putExtra("chapter", chapter);
-                intent.putExtra("lesson", lesson);
+                intent.putExtra(Constants.CHAPTER_KEY, chapter);
+                intent.putExtra(Constants.LESSON_KEY, lesson);
                 startActivity(intent);
             }
         });

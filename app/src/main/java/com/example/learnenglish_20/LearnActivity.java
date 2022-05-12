@@ -18,7 +18,7 @@ import java.util.List;
 public class LearnActivity extends AppCompatActivity {
 
     int index, chapter, lesson;
-    Button btMemo, btNotMemo;
+    Button btMemo;
     ImageButton backToLesson;
     TextView englishWord, russianWord;
     public static List<Word> currentLessonWordsArr = CurrentLessonFragment.currentLessonWordsArr;
@@ -33,7 +33,6 @@ public class LearnActivity extends AppCompatActivity {
         init(); // Инициализация полей
 
         setMemoBtnListener(); // Устанавливаем слушатели
-        setNotMemoBtnListener();
         setCtBackClickListener();
 
     }
@@ -62,12 +61,6 @@ public class LearnActivity extends AppCompatActivity {
         });
     }
 
-    private void setNotMemoBtnListener(){
-        btNotMemo.setOnClickListener(b->{
-            setNewWords();
-        });
-    }
-
     private void setNewWords() {
         if(used_values.size()!=0) {
             do {
@@ -87,8 +80,7 @@ public class LearnActivity extends AppCompatActivity {
         englishWord = findViewById(R.id.english_word_learn);
         russianWord = findViewById(R.id.russian_word_learn);
         used_values = new ArrayList<>();
-        btMemo = findViewById(R.id.bt_memo);
-        btNotMemo = findViewById(R.id.bt_not_memo);
+        btMemo = findViewById(R.id.bt_next);
         backToLesson = findViewById(R.id.imageButtonToLesson);
         wordPic = findViewById(R.id.word_image);
         setNewWords();
