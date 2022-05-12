@@ -60,11 +60,11 @@
             />
 
         <Button
-            android:id="@+id/bt_pic"
+            android:id="@+id/bt_cards"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/bt_pic"
+            android:text="@string/bt_cards"
             android:backgroundTint="@color/purple_700_light"/>
 
         <Button
@@ -100,7 +100,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/bt_collect"
-            android:backgroundTint="@color/purple_700_light"/>
+            android:backgroundTint="@color/purple_700_light" />
 
         <Button
             android:id="@+id/bt_plit"

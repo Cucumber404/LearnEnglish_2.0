@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,18 +23,17 @@ public class LearnActivity extends AppCompatActivity {
     TextView englishWord, russianWord;
     public static List<Word> currentLessonWordsArr = CurrentLessonFragment.currentLessonWordsArr;
     List<Integer> used_values;
+    ImageView wordPic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_learn);
 
-        init();
+        init(); // Инициализация полей
 
-        setMemoBtnListener();
-
+        setMemoBtnListener(); // Устанавливаем слушатели
         setNotMemoBtnListener();
-
         setCtBackClickListener();
 
     }
@@ -67,26 +69,29 @@ public class LearnActivity extends AppCompatActivity {
     }
 
     private void setNewWords() {
-        do {
+        if(used_values.size()!=0) {
+            do {
+                index = (int) (Math.random() * 10);
+            } while (used_values.contains(index));
+        }else{
             index = (int) (Math.random() * 10);
-        } while (used_values.contains(index));
+        }
         Word word = currentLessonWordsArr.get(index);
         englishWord.setText(word.getEnglish());
         russianWord.setText(word.getRussian());
+        Picasso.get().load(word.getPicture()).into(wordPic);
     }
 
     private void init() {
         getIntentLearn();
-        englishWord = findViewById(R.id.english_word);
-        russianWord = findViewById(R.id.russian_word);
+        englishWord = findViewById(R.id.english_word_learn);
+        russianWord = findViewById(R.id.russian_word_learn);
         used_values = new ArrayList<>();
         btMemo = findViewById(R.id.bt_memo);
         btNotMemo = findViewById(R.id.bt_not_memo);
         backToLesson = findViewById(R.id.imageButtonToLesson);
-        index = (int) (Math.random() * 10);
-        Word word = currentLessonWordsArr.get(index);
-        englishWord.setText(word.getEnglish());
-        russianWord.setText(word.getRussian());
+        wordPic = findViewById(R.id.word_image);
+        setNewWords();
     }
 
     private void getIntentLearn(){

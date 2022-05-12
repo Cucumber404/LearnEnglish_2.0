@@ -6,11 +6,22 @@ public class Word {
     public String russian;
     public String myId;
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public String picture;
+
     public Word(String id, String english, String russian, String myId) {
         this.id = id;
         this.english = english;
         this.russian = russian;
         this.myId = myId;
+        picture = "URL";
     }
 
     public Word() {

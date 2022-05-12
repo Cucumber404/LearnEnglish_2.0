@@ -44,8 +44,8 @@ public class WordPairAdapter extends RecyclerView.Adapter<WordPairAdapter.ViewHo
         final TextView russianWord, englishWord;
         ViewHolder(View view){
             super(view);
-            russianWord = view.findViewById(R.id.russian_word);
-            englishWord = view.findViewById(R.id.english_word);
+            russianWord = view.findViewById(R.id.russian_word_recyc);
+            englishWord = view.findViewById(R.id.english_word_recyc);
         }
     }
 }
