@@ -4,14 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,10 +25,11 @@ public class CardsActivity extends AppCompatActivity {
     ImageButton backToLesson;
     TextView topWord, bottomWord;
     public static List<Word> currentLessonWordsArr = CurrentLessonFragment.currentLessonWordsArr;
-    List<Integer> used_values;
+    List<Integer> usedValues;
     ImageView wordPic;
     boolean fromEnToRu;
     Word currentWord;
+    ProgressBar progressBar;
     int previousIndex;
 
 
@@ -68,8 +70,8 @@ public class CardsActivity extends AppCompatActivity {
 
     private void setMemoBtnListener() {
         btMemo.setOnClickListener(b->{
-            used_values.add(index);
-            if(used_values.size()<10) {
+            usedValues.add(index);
+            if(usedValues.size()<10) {
                 setTopWord();
                 btMemo.setVisibility(View.INVISIBLE);
                 btNotMemo.setVisibility(View.INVISIBLE);
@@ -94,21 +96,35 @@ public class CardsActivity extends AppCompatActivity {
     }
 
     private void setTopWord() {
-        if(used_values.size()!=0) {
+        progressBar.setVisibility(View.VISIBLE);
+        if(usedValues.size()!=0) {
             do {
                 index = (int) (Math.random() * 10);
-            } while (used_values.contains(index));
+            } while (usedValues.contains(index) || index==previousIndex);
         }else{
             index = (int) (Math.random() * 10);
         }
-        Word word = currentLessonWordsArr.get(index);
-        currentWord = word;
-        if (fromEnToRu) {
-            topWord.setText(word.getEnglish());
+        currentWord = currentLessonWordsArr.get(index);
+        if(usedValues.size()!=9){
+            previousIndex = index;
         }else{
-            topWord.setText(word.getRussian());
+            previousIndex = -1;
         }
-        Picasso.get().load(word.getPicture()).into(wordPic);
+        if (fromEnToRu) {
+            topWord.setText(currentWord.getEnglish());
+        }else{
+            topWord.setText(currentWord.getRussian());
+        }
+        Picasso.get().load(currentWord.getPicture()).into(wordPic, new Callback() {
+            @Override
+            public void onSuccess() {
+                progressBar.setVisibility(View.INVISIBLE);
+            }
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
         bottomWord.setText("");
     }
 
@@ -116,7 +132,8 @@ public class CardsActivity extends AppCompatActivity {
         getIntentCards();
         topWord = findViewById(R.id.top_word_card);
         bottomWord = findViewById(R.id.bottom_word_card);
-        used_values = new ArrayList<>();
+        usedValues = new ArrayList<>();
+        usedValues.clear();
         btMemo = findViewById(R.id.bt_cards_memo);
         btNotMemo = findViewById(R.id.bt_cards_not_memo);
         backToLesson = findViewById(R.id.imageButtonToLesson);
@@ -124,6 +141,7 @@ public class CardsActivity extends AppCompatActivity {
         wordPic = findViewById(R.id.en_ru_cards_image);
         btMemo.setVisibility(View.INVISIBLE);
         btNotMemo.setVisibility(View.INVISIBLE);
+        progressBar = findViewById(R.id.progress_bar_cards);
         setTopWord();
     }
 

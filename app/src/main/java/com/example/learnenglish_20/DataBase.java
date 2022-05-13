@@ -22,7 +22,7 @@ public class DataBase {
     }
 
     private DatabaseReference mDataBase;
-    private String WORD_KEY = "Word";
+    private final String WORD_KEY = "Word";
     public static List<Word> wordsArr;
     StorageReference storageRef;
     public static String[] englishWordsArr; // При необходимости изменения данных в базе заполнить данные массивы

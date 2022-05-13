@@ -1,6 +1,7 @@
 package com.example.learnenglish_20;
 
 import android.annotation.SuppressLint;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -27,7 +28,6 @@ public class LessonsFragment extends Fragment implements AdapterView.OnItemClick
     LessonsFragment(int chapter){
         super();
         this.chapter=chapter;
-        Log.d("chapter:", String.valueOf(chapter));
     }
 
     @Override
@@ -54,6 +54,7 @@ public class LessonsFragment extends Fragment implements AdapterView.OnItemClick
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),R.layout.modules_lessons_list, R.id.button, lessonsArr);
         lessonsList.setAdapter(adapter);
         lessonsList.setOnItemClickListener(this);
+//        lessonsList.getChildAt(1).setBackgroundColor(Color.parseColor("#1D8320"));
     }
 
     @Override

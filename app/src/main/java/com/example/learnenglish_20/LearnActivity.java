@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,6 +27,7 @@ public class LearnActivity extends AppCompatActivity {
     public static List<Word> currentLessonWordsArr = CurrentLessonFragment.currentLessonWordsArr;
     List<Integer> used_values;
     ImageView wordPic;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +66,7 @@ public class LearnActivity extends AppCompatActivity {
     }
 
     private void setNewWords() {
+        progressBar.setVisibility(View.VISIBLE);
         if(used_values.size()!=0) {
             do {
                 index = (int) (Math.random() * 10);
@@ -72,7 +77,17 @@ public class LearnActivity extends AppCompatActivity {
         Word word = currentLessonWordsArr.get(index);
         englishWord.setText(word.getEnglish());
         russianWord.setText(word.getRussian());
-        Picasso.get().load(word.getPicture()).into(wordPic);
+        Picasso.get().load(word.getPicture()).into(wordPic, new Callback() {
+            @Override
+            public void onSuccess() {
+                progressBar.setVisibility(View.INVISIBLE); // Убираем ProgressBar когда изображение загружено
+            }
+//Callback говорит нам что дейсвие за которое он ответственный совершено
+            @Override
+            public void onError(Exception e) {
+
+            }
+        });
     }
 
     private void init() {
@@ -83,6 +98,7 @@ public class LearnActivity extends AppCompatActivity {
         btMemo = findViewById(R.id.bt_next);
         backToLesson = findViewById(R.id.imageButtonToLesson);
         wordPic = findViewById(R.id.word_image);
+        progressBar=findViewById(R.id.progress_bar_learn);
         setNewWords();
     }
 

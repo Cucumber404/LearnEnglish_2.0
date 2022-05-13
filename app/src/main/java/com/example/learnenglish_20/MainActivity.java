@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -36,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         init();
 
-        firstTimeLaunching=true;
-
         replaceFragment(new ProfileFragment()); // Чтобы при открытии приложения показывался HomeFragment
 
         setBottomNavListener();
@@ -49,13 +48,13 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> { // Слушатель нажатия на  bottomNavigationView
 
             switch (item.getItemId()){
-                case R.id.home:
+                case Constants.FRAMENT_HOME_ID:
                     replaceFragment(new HomeFragment());
                     break;
-                case R.id.profile:
+                case Constants.FRAMENT_PROFILE_ID:
                     replaceFragment(new ProfileFragment());
                     break;
-                case R.id.settings:
+                case Constants.FRAMENT_SETTINGS_ID:
                     replaceFragment(new SettingsFragment());
                     break;
             }
