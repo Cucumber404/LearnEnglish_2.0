@@ -12,6 +12,7 @@
         <entry key="app/src/main/res/drawable/separator.xml" value="0.1935" />
         <entry key="app/src/main/res/layout/activity_cards.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_learn.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.18604651162790697" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_current_lesson.xml" value="0.318472221493721" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2223731884057971" />

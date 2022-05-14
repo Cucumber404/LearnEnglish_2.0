@@ -39,6 +39,7 @@ public class LearnActivity extends AppCompatActivity {
         setMemoBtnListener(); // Устанавливаем слушатели
         setCtBackClickListener();
 
+
     }
 
     private void setCtBackClickListener() {

@@ -16,4 +16,12 @@
     <string name="bt_cards_memo">запомнил!</string>
     <string name="bt_cards_show">Показать</string>
     <string name="finish_exersize">Поздравляю, вы закончили упражнение!</string>
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_bt_sign_up">Зарегестрироваться</string>
+    <string name="login_bt_sign_in">Войти</string>
+    <string name="sign_out_bt">Выйти из аккаунта</string>
+    <string name="bt_forgot_password">Забыли пароль?</string>
+    <string name="bt_new_passw">Восстановить пароль</string>
+    <string name="bt_login_back">Назад</string>
 </resources>

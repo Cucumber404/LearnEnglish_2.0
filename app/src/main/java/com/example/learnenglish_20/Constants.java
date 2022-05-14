@@ -9,4 +9,5 @@ public class Constants {
     public static final int FRAMENT_HOME_ID = R.id.home;
     public static final int FRAMENT_PROFILE_ID = R.id.profile;
     public static final int FRAMENT_SETTINGS_ID = R.id.settings;
+    public static final String LAUNCHED_WITHOUT_SIGN = "without_sign_launch";
 }
