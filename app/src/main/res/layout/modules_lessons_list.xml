@@ -2,22 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/bg_main">
 
-    <TextView
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginVertical="10sp"
-        android:background="@color/purple_700_light"
-        android:fontFamily="@font/chewy"
-        android:gravity="center"
-        android:text="asdf"
-        android:textColor="@color/white"
-        android:textSize="30dp"
-        app:cornerRadius="40dp"
-        />
-
-
-
+        <TextView
+            android:id="@+id/item_chapters_lessons_list"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginVertical="10sp"
+            android:background="@color/purple_700_light"
+            android:fontFamily="@font/chewy"
+            android:gravity="center"
+            android:text="text"
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            app:cornerRadius="40dp" />
 </LinearLayout>

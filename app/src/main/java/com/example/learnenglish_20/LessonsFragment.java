@@ -1,28 +1,26 @@
 package com.example.learnenglish_20;
 
-import android.annotation.SuppressLint;
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
-import android.widget.ListView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 public class LessonsFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private int chapter;
-    private String[] lessonsArr = new String[] {"Урок 1" , "Урок 2", "Урок 3",
-            "Урок 4" , "Урок 5", "Урок 6","Урок 7" , "Урок 8", "Урок 9", "Урок 10"};
-    private ListView lessonsList;
+    private ArrayList<String> lessonsArr;
+    private RecyclerView lessonsRecView;
     ImageButton imageButtontoHome;
 
     LessonsFragment(int chapter){
@@ -33,7 +31,7 @@ public class LessonsFragment extends Fragment implements AdapterView.OnItemClick
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, // Здесь указывается какой дизайн используется для фрагмента
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.lessons_fragment, container, false);
+        View view = inflater.inflate(R.layout.fragment_lessons, container, false);
 
         createLessonsList(view); // Создаем ListView cо списком уроков
 
@@ -50,11 +48,25 @@ public class LessonsFragment extends Fragment implements AdapterView.OnItemClick
     }
 
     private void createLessonsList(View view) {
-        lessonsList =  view.findViewById(R.id.lessons_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),R.layout.modules_lessons_list, R.id.button, lessonsArr);
-        lessonsList.setAdapter(adapter);
-        lessonsList.setOnItemClickListener(this);
-//        lessonsList.getChildAt(1).setBackgroundColor(Color.parseColor("#1D8320"));
+        lessonsArr = new ArrayList<>();
+        for(int i=1;i<11;i++){
+            lessonsArr.add("Урок "+i);
+        }
+        System.out.println(lessonsArr.size());
+        lessonsRecView = view.findViewById(R.id.lessons_rec_view);
+        ChapterAndLessonsAdapter adapter = new ChapterAndLessonsAdapter(getActivity().getApplicationContext(), lessonsArr);
+        lessonsRecView.setAdapter(adapter);
+        lessonsRecView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity().getApplicationContext(), lessonsRecView,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        replaceFragment(new CurrentLessonFragment(chapter, position));
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        Toast.makeText(getActivity().getApplicationContext(),"qwe",Toast.LENGTH_LONG).show();
+                    }
+                })
+        );;
     }
 
     @Override

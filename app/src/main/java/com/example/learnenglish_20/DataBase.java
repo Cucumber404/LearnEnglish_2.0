@@ -49,9 +49,7 @@ public class DataBase {
                     wordsArr.add(word);
                     Log.d("word_eng",word.english);
                 }
-                //adapter.notifyDataSetChanged();
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 

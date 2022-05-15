@@ -150,8 +150,6 @@ public class CardsActivity extends AppCompatActivity {
         if (i!=null){
             chapter = i.getIntExtra(Constants.CHAPTER_KEY, -1);
             lesson = i.getIntExtra(Constants.LESSON_KEY, -1);
-            fromEnToRu = (i.getStringExtra(Constants.ORDER_KEY).equals(Constants.ORDER_EN_RU));
-            System.out.println((Constants.ORDER_KEY+" "+ i.getStringExtra(Constants.ORDER_KEY)));
-        }
+            fromEnToRu = (i.getStringExtra(Constants.ORDER_KEY).equals(Constants.ORDER_EN_RU)); }
     }
 }

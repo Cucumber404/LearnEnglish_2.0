@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -21,8 +22,9 @@ public class WordPairAdapter extends RecyclerView.Adapter<WordPairAdapter.ViewHo
         this.wordPairs = wordPairs;
         this.inflater = LayoutInflater.from(context);
     }
+    @NonNull
     @Override
-    public WordPairAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public WordPairAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.words_list_layout, parent, false);
         return new ViewHolder(view);

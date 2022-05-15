@@ -5,20 +5,19 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     private ArrayList<String> chaptersArr;
-    private ListView modulesList;
+    private RecyclerView modulesRecView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, // Здесь указывается какой дизайн используется для фрагмента
@@ -44,10 +43,20 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
     }
 
     private void initModulesList(View view) {
-        modulesList =  view.findViewById(R.id.modules_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity().getApplicationContext(),R.layout.modules_lessons_list, R.id.button, chaptersArr);
-        modulesList.setAdapter(adapter);
-        modulesList.setOnItemClickListener(this);
+        modulesRecView = view.findViewById(R.id.modules_rec_view);
+        ChapterAndLessonsAdapter adapter = new ChapterAndLessonsAdapter(getActivity().getApplicationContext(), chaptersArr);
+        modulesRecView.setAdapter(adapter);
+        modulesRecView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity().getApplicationContext(), modulesRecView,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        replaceFragment(new LessonsFragment(position));
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
     }
 
     @Override
@@ -57,6 +66,7 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
     public void replaceFragment(Fragment fragment){ // Замена фрагмента
         FragmentManager fragmentManager = getFragmentManager();
+        assert fragmentManager != null;
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.frame_layout,fragment);
         fragmentTransaction.commit();
