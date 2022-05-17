@@ -3,6 +3,7 @@ package com.example.learnenglish_20;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,10 +39,19 @@ public class ChapterAndLessonsAdapter extends RecyclerView.Adapter<ChapterAndLes
         //выполняет привязку объекта ViewHolder к строке по определенной позиции
         holder.item.setText(chaptersOrLessons.get(position));
 
-        if((position%2)==0) {
-            holder.item.setBackgroundColor(Color.parseColor("#47BF32"));
-        }else{
-            holder.item.setBackgroundColor(Color.parseColor("#46bee6"));
+        if (chaptersOrLessons.get(0).equals("Глава 1")) {
+            if(position+1<=HomeFragment.chapterProgress) {
+                holder.item.setBackgroundColor(Color.parseColor("#47BF32"));
+            }else {
+                holder.item.setBackgroundColor(Color.parseColor("#46bee6"));
+            }
+        } else {
+            if((position*10+1+HomeFragment.clickedChapter*100)<=HomeFragment.lessonsProgress) {
+                Log.d("lessons progress", String.valueOf(HomeFragment.lessonsProgress));
+                holder.item.setBackgroundColor(Color.parseColor("#47BF32"));
+            }else {
+                holder.item.setBackgroundColor(Color.parseColor("#46bee6"));
+            }
         }
     }
 
@@ -53,6 +63,7 @@ public class ChapterAndLessonsAdapter extends RecyclerView.Adapter<ChapterAndLes
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         final TextView item;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             item = itemView.findViewById(R.id.item_chapters_lessons_list);

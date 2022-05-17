@@ -14,10 +14,12 @@ import android.widget.AdapterView;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class HomeFragment extends Fragment {
 
     private ArrayList<String> chaptersArr;
     private RecyclerView modulesRecView;
+    public static int chapterProgress, lessonsProgress, entireProgress;
+    public static int clickedChapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, // Здесь указывается какой дизайн используется для фрагмента
@@ -26,19 +28,31 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
 
         initChaptersArr(); // Определяем сколько глав у нас будет
 
+        initProgress();
+
         initModulesList(view); // Создаем список глав
 
         return view;
     }
 
+    private void initProgress(){
+        chapterProgress=0;
+        entireProgress=DataBase.progress;
+        lessonsProgress=entireProgress;
+        while(entireProgress>99){
+            chapterProgress+=1;
+            entireProgress-=100;
+        }
+    }
+
     private void initChaptersArr() {
         chaptersArr = new ArrayList<>();
-        int i=1;
+        int i = 1;
         int size = DataBase.wordsArr.size();
-        while (size > 0){
-            chaptersArr.add("Глава "+i);
+        while (size > 0) {
+            chaptersArr.add("Глава " + i);
             i++;
-            size-=100;
+            size -= 100;
         }
     }
 
@@ -47,28 +61,31 @@ public class HomeFragment extends Fragment implements AdapterView.OnItemClickLis
         ChapterAndLessonsAdapter adapter = new ChapterAndLessonsAdapter(getActivity().getApplicationContext(), chaptersArr);
         modulesRecView.setAdapter(adapter);
         modulesRecView.addOnItemTouchListener(
-                new RecyclerItemClickListener(getActivity().getApplicationContext(), modulesRecView,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                new RecyclerItemClickListener(getActivity().getApplicationContext(), modulesRecView, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        clickedChapter=position;
                         replaceFragment(new LessonsFragment(position));
                     }
 
-                    @Override public void onLongItemClick(View view, int position) {
+                    @Override
+                    public void onLongItemClick(View view, int position) {
                         // do whatever
                     }
                 })
         );
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        replaceFragment(new LessonsFragment(position)); // При нажатии на главу открывается фрагмент с уроками
-    }
+//    @Override
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        replaceFragment(new LessonsFragment(position)); // При нажатии на главу открывается фрагмент с уроками
+//    }
 
-    public void replaceFragment(Fragment fragment){ // Замена фрагмента
+    public void replaceFragment(Fragment fragment) { // Замена фрагмента
         FragmentManager fragmentManager = getFragmentManager();
         assert fragmentManager != null;
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
 }

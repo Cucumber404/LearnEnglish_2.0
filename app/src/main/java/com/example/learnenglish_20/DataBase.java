@@ -34,7 +34,7 @@ public class DataBase {
     public static int progress;
 
 
-    DataBase(){
+    DataBase() {
         mWordDataBase = FirebaseDatabase.getInstance().getReference(WORD_KEY);
         mUserDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -45,20 +45,20 @@ public class DataBase {
         getMyUserFromDB(FirebaseAuth.getInstance().getCurrentUser().getEmail());
     }
 
-    public static void getMyUserFromDB(String eMail){
+    public static void getMyUserFromDB(String eMail) {
         ValueEventListener vListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     myCurrentUser = ds.getValue(User.class);
-                    assert myCurrentUser!=null;
-                    if(myCurrentUser.geteMail().equals(eMail)){
+                    assert myCurrentUser != null;
+                    if (myCurrentUser.geteMail().equals(eMail)) {
                         break;
                     }
                 }
                 //Когда код доходит до сюда, вся информация уже загружена, то
                 //есть можно отследить момент загрузки (важно!!!)
-                progress=Integer.parseInt(myCurrentUser.getProgress());
+                progress = Integer.parseInt(myCurrentUser.getProgress());
             }
 
             @Override
@@ -69,17 +69,18 @@ public class DataBase {
         mUserDataBase.addValueEventListener(vListener);
     }
 
-    private void getDataFromDB(){
+    private void getDataFromDB() {
         ValueEventListener vListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (wordsArr.size()>0) wordsArr.clear();
+                if (wordsArr.size() > 0) wordsArr.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     Word word = ds.getValue(Word.class); // Получаем Word из БД
                     assert word != null; // Проверяем что word не null
                     wordsArr.add(word);
                 }
             }
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -90,7 +91,7 @@ public class DataBase {
 
     private void pushWordsInDB() { // При необходимости
         String id = mWordDataBase.getKey();
-        for (int i=0;i<englishWordsArr.length;i++){
+        for (int i = 0; i < englishWordsArr.length; i++) {
             Word word = new Word(id, englishWordsArr[i], russianWordsArr[i], String.valueOf(i));
             mWordDataBase.push().setValue(word);
         }
@@ -99,7 +100,7 @@ public class DataBase {
     public static void pushUserInDB(String eMail) { // При необходимости
         mUserDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
         String id = mUserDataBase.getKey();
-        User user = new User(id,"0", eMail);
+        User user = new User(id, "0", eMail);
         mUserDataBase.push().setValue(user);
     }
 

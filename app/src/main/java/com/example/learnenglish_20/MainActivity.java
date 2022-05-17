@@ -1,30 +1,17 @@
 package com.example.learnenglish_20;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.learnenglish_20.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> { // Слушатель нажатия на  bottomNavigationView
 
             switch (item.getItemId()){
-                case Constants.FRAMENT_HOME_ID:
+                case Constants.FRAGMENT_HOME_ID:
                     replaceFragment(new HomeFragment());
                     break;
-                case Constants.FRAMENT_PROFILE_ID:
+                case Constants.FRAGMENT_PROFILE_ID:
                     replaceFragment(new ProfileFragment());
                     break;
-                case Constants.FRAMENT_SETTINGS_ID:
+                case Constants.FRAGMENT_SETTINGS_ID:
                     replaceFragment(new SettingsFragment());
                     break;
             }

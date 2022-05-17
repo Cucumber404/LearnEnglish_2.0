@@ -43,7 +43,7 @@ public class LearnActivity extends AppCompatActivity {
     }
 
     private void setCtBackClickListener() {
-        backToLesson.setOnClickListener(b->{
+        backToLesson.setOnClickListener(b -> {
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra("chapter", chapter);
             intent.putExtra("lesson", lesson);
@@ -52,15 +52,15 @@ public class LearnActivity extends AppCompatActivity {
     }
 
     private void setMemoBtnListener() {
-        btMemo.setOnClickListener(b->{
+        btMemo.setOnClickListener(b -> {
             used_values.add(index);
-            if(used_values.size()<10) {
+            if (used_values.size() < 10) {
                 setNewWords();
-            }else{
+            } else {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("chapter", chapter);
                 intent.putExtra("lesson", lesson);
-                Toast.makeText(this,"Поздравляю, вы закончили упражнение!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Поздравляю, вы закончили упражнение!", Toast.LENGTH_LONG).show();
                 startActivity(intent);
             }
         });
@@ -68,11 +68,11 @@ public class LearnActivity extends AppCompatActivity {
 
     private void setNewWords() {
         progressBar.setVisibility(View.VISIBLE);
-        if(used_values.size()!=0) {
+        if (used_values.size() != 0) {
             do {
                 index = (int) (Math.random() * 10);
             } while (used_values.contains(index));
-        }else{
+        } else {
             index = (int) (Math.random() * 10);
         }
         Word word = currentLessonWordsArr.get(index);
@@ -83,7 +83,8 @@ public class LearnActivity extends AppCompatActivity {
             public void onSuccess() {
                 progressBar.setVisibility(View.INVISIBLE); // Убираем ProgressBar когда изображение загружено
             }
-//Callback говорит нам что дейсвие за которое он ответственный совершено
+
+            //Callback говорит нам что дейсвие за которое он ответственный совершено
             @Override
             public void onError(Exception e) {
 
@@ -99,13 +100,13 @@ public class LearnActivity extends AppCompatActivity {
         btMemo = findViewById(R.id.bt_next);
         backToLesson = findViewById(R.id.imageButtonToLesson);
         wordPic = findViewById(R.id.word_image);
-        progressBar=findViewById(R.id.progress_bar_learn);
+        progressBar = findViewById(R.id.progress_bar_learn);
         setNewWords();
     }
 
-    private void getIntentLearn(){
+    private void getIntentLearn() {
         Intent i = getIntent();
-        if (i!=null){
+        if (i != null) {
             chapter = i.getIntExtra("chapter", -1);
             lesson = i.getIntExtra("lesson", -1);
         }

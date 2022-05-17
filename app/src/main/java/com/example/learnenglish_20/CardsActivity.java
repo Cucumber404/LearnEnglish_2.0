@@ -47,10 +47,10 @@ public class CardsActivity extends AppCompatActivity {
     }
 
     private void setBtShowClickListener() {
-        btShow.setOnClickListener(b->{
-            if(fromEnToRu){
+        btShow.setOnClickListener(b -> {
+            if (fromEnToRu) {
                 bottomWord.setText(currentWord.getRussian());
-            }else{
+            } else {
                 bottomWord.setText(currentWord.getEnglish());
             }
             btShow.setVisibility(View.INVISIBLE);
@@ -60,7 +60,7 @@ public class CardsActivity extends AppCompatActivity {
     }
 
     private void setBtBackClickListener() {
-        backToLesson.setOnClickListener(b->{
+        backToLesson.setOnClickListener(b -> {
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra(Constants.CHAPTER_KEY, chapter);
             intent.putExtra(Constants.LESSON_KEY, lesson);
@@ -69,14 +69,14 @@ public class CardsActivity extends AppCompatActivity {
     }
 
     private void setMemoBtnListener() {
-        btMemo.setOnClickListener(b->{
+        btMemo.setOnClickListener(b -> {
             usedValues.add(index);
-            if(usedValues.size()<10) {
+            if (usedValues.size() < 10) {
                 setTopWord();
                 btMemo.setVisibility(View.INVISIBLE);
                 btNotMemo.setVisibility(View.INVISIBLE);
                 btShow.setVisibility(View.VISIBLE);
-            }else{
+            } else {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra(Constants.CHAPTER_KEY, chapter);
                 intent.putExtra(Constants.LESSON_KEY, lesson);
@@ -86,8 +86,8 @@ public class CardsActivity extends AppCompatActivity {
         });
     }
 
-    private void setNotMemoBtnListener(){
-        btNotMemo.setOnClickListener(b->{
+    private void setNotMemoBtnListener() {
+        btNotMemo.setOnClickListener(b -> {
             setTopWord();
             btMemo.setVisibility(View.INVISIBLE);
             btNotMemo.setVisibility(View.INVISIBLE);
@@ -97,22 +97,22 @@ public class CardsActivity extends AppCompatActivity {
 
     private void setTopWord() {
         progressBar.setVisibility(View.VISIBLE);
-        if(usedValues.size()!=0) {
+        if (usedValues.size() != 0) {
             do {
                 index = (int) (Math.random() * 10);
-            } while (usedValues.contains(index) || index==previousIndex);
-        }else{
+            } while (usedValues.contains(index) || index == previousIndex);
+        } else {
             index = (int) (Math.random() * 10);
         }
         currentWord = currentLessonWordsArr.get(index);
-        if(usedValues.size()!=9){
+        if (usedValues.size() != 9) {
             previousIndex = index;
-        }else{
+        } else {
             previousIndex = -1;
         }
         if (fromEnToRu) {
             topWord.setText(currentWord.getEnglish());
-        }else{
+        } else {
             topWord.setText(currentWord.getRussian());
         }
         Picasso.get().load(currentWord.getPicture()).into(wordPic, new Callback() {
@@ -120,6 +120,7 @@ public class CardsActivity extends AppCompatActivity {
             public void onSuccess() {
                 progressBar.setVisibility(View.INVISIBLE);
             }
+
             @Override
             public void onError(Exception e) {
 
@@ -145,11 +146,12 @@ public class CardsActivity extends AppCompatActivity {
         setTopWord();
     }
 
-    private void getIntentCards(){
+    private void getIntentCards() {
         Intent i = getIntent();
-        if (i!=null){
+        if (i != null) {
             chapter = i.getIntExtra(Constants.CHAPTER_KEY, -1);
             lesson = i.getIntExtra(Constants.LESSON_KEY, -1);
-            fromEnToRu = (i.getStringExtra(Constants.ORDER_KEY).equals(Constants.ORDER_EN_RU)); }
+            fromEnToRu = (i.getStringExtra(Constants.ORDER_KEY).equals(Constants.ORDER_EN_RU));
+        }
     }
 }
