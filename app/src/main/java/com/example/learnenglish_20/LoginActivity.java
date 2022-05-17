@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.text.method.PasswordTransformationMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -68,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         currentUser = mAuth.getCurrentUser(); // Если не зареган, то null
-        if(currentUser!=null){
+        if(currentUser!=null && currentUser.isEmailVerified()){
             Intent intent = new Intent(this,MainActivity.class);
             intent.putExtra(Constants.LAUNCHED_WITHOUT_SIGN,true);
             startActivity(intent);
@@ -80,7 +79,8 @@ public class LoginActivity extends AppCompatActivity {
             mAuth.createUserWithEmailAndPassword(edLogin.getText().toString(),edPassword.getText().toString()).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     sendEmailVer();
-                }else{
+                    DataBase.pushUserInDB(edLogin.getText().toString());
+                }else {
                     Toast.makeText(getApplicationContext(),"Ошибка при регистрации",Toast.LENGTH_LONG).show();
                 }
             });

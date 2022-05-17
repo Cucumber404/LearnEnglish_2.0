@@ -63,7 +63,6 @@ public class LessonsFragment extends Fragment implements AdapterView.OnItemClick
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
-                        Toast.makeText(getActivity().getApplicationContext(),"qwe",Toast.LENGTH_LONG).show();
                     }
                 })
         );;

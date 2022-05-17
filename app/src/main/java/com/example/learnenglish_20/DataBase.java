@@ -4,6 +4,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,21 +22,51 @@ public class DataBase {
         new DataBase();
     }
 
-    private DatabaseReference mDataBase;
+    public DatabaseReference mWordDataBase;
+    public static DatabaseReference mUserDataBase;
     private final String WORD_KEY = "Word";
+    public static final String USER_KEY = "User";
     public static List<Word> wordsArr;
+    public static User myCurrentUser;
     StorageReference storageRef;
     public static String[] englishWordsArr; // При необходимости изменения данных в базе заполнить данные массивы
     public static String[] russianWordsArr; // и вызвать pushInDB
+    public static int progress;
 
 
     DataBase(){
+        mWordDataBase = FirebaseDatabase.getInstance().getReference(WORD_KEY);
+        mUserDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        mDataBase = FirebaseDatabase.getInstance().getReference(WORD_KEY);
         storageRef = storage.getReference();
         wordsArr = new ArrayList<>();
 //        pushInDB(); // В наст момент база заполнена
         getDataFromDB();
+        getMyUserFromDB(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+    }
+
+    public static void getMyUserFromDB(String eMail){
+        ValueEventListener vListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    myCurrentUser = ds.getValue(User.class);
+                    assert myCurrentUser!=null;
+                    if(myCurrentUser.geteMail().equals(eMail)){
+                        break;
+                    }
+                }
+                //Когда код доходит до сюда, вся информация уже загружена, то
+                //есть можно отследить момент загрузки (важно!!!)
+                progress=Integer.parseInt(myCurrentUser.getProgress());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        mUserDataBase.addValueEventListener(vListener);
     }
 
     private void getDataFromDB(){
@@ -47,7 +78,6 @@ public class DataBase {
                     Word word = ds.getValue(Word.class); // Получаем Word из БД
                     assert word != null; // Проверяем что word не null
                     wordsArr.add(word);
-                    Log.d("word_eng",word.english);
                 }
             }
             @Override
@@ -55,15 +85,22 @@ public class DataBase {
 
             }
         };
-        mDataBase.addValueEventListener(vListener);
+        mWordDataBase.addValueEventListener(vListener);
     }
 
-    private void pushInDB() { // При необходимости
-        String id = mDataBase.getKey();
+    private void pushWordsInDB() { // При необходимости
+        String id = mWordDataBase.getKey();
         for (int i=0;i<englishWordsArr.length;i++){
             Word word = new Word(id, englishWordsArr[i], russianWordsArr[i], String.valueOf(i));
-            mDataBase.push().setValue(word);
+            mWordDataBase.push().setValue(word);
         }
+    }
+
+    public static void pushUserInDB(String eMail) { // При необходимости
+        mUserDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
+        String id = mUserDataBase.getKey();
+        User user = new User(id,"0", eMail);
+        mUserDataBase.push().setValue(user);
     }
 
 //    Данные массивы использовались при заполнении БД, понадобятся только

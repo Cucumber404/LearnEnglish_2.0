@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     ActivityMainBinding binding; // В binding будут все элементы дизайна у которых есть id
     private boolean firstTimeLaunching;
     boolean launch_without_sign;
+    public static int progress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         getIntentMain();
 
         launchWithoutSignToast();
+
 
     }
 
