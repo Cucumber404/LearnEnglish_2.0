@@ -24,7 +24,7 @@ public class CurrentLessonFragment extends Fragment {
     private int lesson;
     private ImageButton imageButtonToLessons;
     public static List<Word> currentLessonWordsArr = new ArrayList<>();
-    Button btLearn, btCardsEnRu, btCardsRuEn;
+    Button btLearn, btCardsEnRu, btCardsRuEn, btTest;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,6 +35,8 @@ public class CurrentLessonFragment extends Fragment {
 
         return view;
     }
+
+//    public CurrentLessonFragment(){}
 
     private void init(Bundle savedInstanceState, View view) {
         initBackButton(view);
@@ -48,24 +50,32 @@ public class CurrentLessonFragment extends Fragment {
         initEnRuButton(view);
 
         initRuEnButton(view);
+
+        btTest = view.findViewById(R.id.bt_test);
+        btTest.setOnClickListener(b -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), TestActivity.class);
+            intent.putExtra(Constants.CHAPTER_KEY, chapter);
+            intent.putExtra(Constants.LESSON_KEY, lesson);
+            startActivity(intent);
+        });
     }
 
     private void initRuEnButton(View view) {
         btCardsRuEn = view.findViewById(R.id.bt_cards_ru_en);
-        btCardsRuEn.setOnClickListener(b->{
+        btCardsRuEn.setOnClickListener(b -> {
             Intent intent = new Intent(getActivity().getApplicationContext(), CardsActivity.class);
             intent.putExtra(Constants.CHAPTER_KEY, chapter);
             intent.putExtra(Constants.LESSON_KEY, lesson);
-            intent.putExtra(Constants.ORDER_KEY,Constants.ORDER_RU_EN);
+            intent.putExtra(Constants.ORDER_KEY, Constants.ORDER_RU_EN);
             startActivity(intent);
         });
     }
 
     private void initEnRuButton(View view) {
         btCardsEnRu = view.findViewById(R.id.bt_cards_en_ru);
-        btCardsEnRu.setOnClickListener(b->{
+        btCardsEnRu.setOnClickListener(b -> {
             Intent intent = new Intent(getActivity().getApplicationContext(), CardsActivity.class);
-            intent.putExtra(Constants.ORDER_KEY,Constants.ORDER_EN_RU);
+            intent.putExtra(Constants.ORDER_KEY, Constants.ORDER_EN_RU);
             intent.putExtra(Constants.CHAPTER_KEY, chapter);
             intent.putExtra(Constants.LESSON_KEY, lesson);
             startActivity(intent);
@@ -73,24 +83,21 @@ public class CurrentLessonFragment extends Fragment {
     }
 
     private void initBtLearn(View view) {
-        btLearn= view.findViewById(R.id.bt_learn);
+        btLearn = view.findViewById(R.id.bt_learn);
 
-        btLearn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplicationContext(), LearnActivity.class);
-                intent.putExtra(Constants.CHAPTER_KEY, chapter);
-                intent.putExtra(Constants.LESSON_KEY, lesson);
-                startActivity(intent);
-            }
+        btLearn.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity().getApplicationContext(), LearnActivity.class);
+            intent.putExtra(Constants.CHAPTER_KEY, chapter);
+            intent.putExtra(Constants.LESSON_KEY, lesson);
+            startActivity(intent);
         });
     }
 
     private void setCurrentWordsArr() {
-        int currentWord = chapter*100+lesson*10;
+        int currentWord = chapter * 100 + lesson * 10;
         currentLessonWordsArr.clear();
-        for (int i=0;i<10;i++){
-            currentLessonWordsArr.add(DataBase.wordsArr.get(currentWord+i));
+        for (int i = 0; i < 10; i++) {
+            currentLessonWordsArr.add(DataBase.wordsArr.get(currentWord + i));
         }
     }
 
@@ -110,17 +117,17 @@ public class CurrentLessonFragment extends Fragment {
     }
 
     private void initBackButton(View view) {
-        imageButtonToLessons =  view.findViewById(R.id.imageButtonToLesson);
-        imageButtonToLessons.setOnClickListener(b->{
+        imageButtonToLessons = view.findViewById(R.id.imageButtonToLesson);
+        imageButtonToLessons.setOnClickListener(b -> {
             replaceFragment(new LessonsFragment(chapter));
         });
     }
 
 
-    public void replaceFragment(Fragment fragment){ // Замена фрагмента
+    public void replaceFragment(Fragment fragment) { // Замена фрагмента
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
 

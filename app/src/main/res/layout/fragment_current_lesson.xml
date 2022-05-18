@@ -46,7 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="425dp"
+        android:layout_marginTop="450dp"
         android:layout_marginHorizontal="25dp"
         >
         <Button
@@ -78,52 +78,53 @@
             android:backgroundTint="@color/purple_700_light"/>
     </LinearLayout>
 
+<!-- пока эти упражнения не готовы
+<LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginTop="495dp"-->
+<!--        android:layout_marginHorizontal="25dp"-->
+<!--        >-->
+
+<!--        <Button-->
+<!--            android:id="@+id/bt_choose"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="@string/bt_choose"-->
+<!--            android:layout_marginEnd="15dp"-->
+<!--            android:backgroundTint="@color/purple_700_light"/>-->
+
+<!--        <Button-->
+<!--            android:id="@+id/bt_collect"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="@string/bt_collect"-->
+<!--            android:backgroundTint="@color/purple_700_light" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/bt_plit"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="@string/bt_plit"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:backgroundTint="@color/purple_700_light"/>-->
+<!--    </LinearLayout>-->
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="495dp"
-        android:layout_marginHorizontal="25dp"
-        >
-
-        <Button
-            android:id="@+id/bt_choose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/bt_choose"
-            android:layout_marginEnd="15dp"
-            android:backgroundTint="@color/purple_700_light"/>
-
-        <Button
-            android:id="@+id/bt_collect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/bt_collect"
-            android:backgroundTint="@color/purple_700_light" />
-
-        <Button
-            android:id="@+id/bt_plit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/bt_plit"
-            android:layout_marginStart="15dp"
-            android:backgroundTint="@color/purple_700_light"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="525dp"
         android:layout_marginHorizontal="25dp"
         >
 
         <Button
             android:id="@+id/bt_test"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/bt_test"

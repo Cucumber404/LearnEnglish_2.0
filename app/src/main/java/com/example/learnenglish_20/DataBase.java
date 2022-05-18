@@ -1,6 +1,7 @@
 package com.example.learnenglish_20;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -14,6 +15,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DataBase {
@@ -33,7 +35,6 @@ public class DataBase {
     public static String[] russianWordsArr; // и вызвать pushInDB
     public static int progress;
 
-
     DataBase() {
         mWordDataBase = FirebaseDatabase.getInstance().getReference(WORD_KEY);
         mUserDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
@@ -50,7 +51,14 @@ public class DataBase {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    myCurrentUser = ds.getValue(User.class);
+                    while(true) {
+                        try {
+                            myCurrentUser = ds.getValue(User.class);
+                            break;
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
+                    }
                     assert myCurrentUser != null;
                     if (myCurrentUser.geteMail().equals(eMail)) {
                         break;
@@ -58,7 +66,7 @@ public class DataBase {
                 }
                 //Когда код доходит до сюда, вся информация уже загружена, то
                 //есть можно отследить момент загрузки (важно!!!)
-                progress = Integer.parseInt(myCurrentUser.getProgress());
+                progress = Integer.parseInt(String.valueOf(myCurrentUser.getProgress()));
             }
 
             @Override
@@ -67,6 +75,44 @@ public class DataBase {
             }
         };
         mUserDataBase.addValueEventListener(vListener);
+    }
+
+    public static void updateProgress(String eMail) {
+        ValueEventListener vListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    myCurrentUser = ds.getValue(User.class);
+                    assert myCurrentUser != null;
+                    if (myCurrentUser.geteMail().equals(eMail)) {
+                        ds.child("progress").getRef().setValue(String.valueOf(progress));
+                        break;
+                    }
+                }
+                //Когда код доходит до сюда, вся информация уже загружена, то
+                //есть можно отследить момент загрузки (важно!!!)
+                progress = Integer.parseInt(String.valueOf(myCurrentUser.getProgress()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        mUserDataBase.addValueEventListener(vListener);
+    }
+
+    public static void updateProgress2(){
+        HashMap user = new HashMap();
+        user.put("progress", String.valueOf(progress));
+
+        mUserDataBase.child(myCurrentUser.geteMail()).updateChildren(user).addOnCompleteListener(task->{
+            if(task.isSuccessful()){
+                Log.d("update","success");
+            }else{
+                Log.d("update","success");
+            }
+        });
     }
 
     private void getDataFromDB() {
@@ -78,6 +124,7 @@ public class DataBase {
                     Word word = ds.getValue(Word.class); // Получаем Word из БД
                     assert word != null; // Проверяем что word не null
                     wordsArr.add(word);
+                    System.out.println(word.getEnglish());
                 }
             }
 

@@ -17,8 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding; // В binding будут все элементы дизайна у которых есть id
     private boolean firstTimeLaunching;
-    boolean launch_without_sign;
-    public static int progress;
+    private boolean newLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,25 +29,21 @@ public class MainActivity extends AppCompatActivity {
 
         replaceFragment(new ProfileFragment()); // Чтобы при открытии приложения показывался HomeFragment
 
-        setBottomNavListener();
-
         getIntentMain();
 
-        launchWithoutSignToast();
-
-
-    }
-
-    private void launchWithoutSignToast() {
-        if(launch_without_sign){
-            Toast.makeText(this,"Вы вошли как: "+LoginActivity.currentUser.getEmail(),Toast.LENGTH_LONG).show();
+        if (newLevel) {
+            Toast.makeText(this, "Поздравляю с повышением!", Toast.LENGTH_LONG).show();
         }
+
+        setBottomNavListener();
+
     }
+
 
     private void setBottomNavListener() {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> { // Слушатель нажатия на  bottomNavigationView
 
-            switch (item.getItemId()){
+            switch (item.getItemId()) {
                 case Constants.FRAGMENT_HOME_ID:
                     replaceFragment(new HomeFragment());
                     break;
@@ -66,27 +61,30 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
     }
 
-    public void replaceFragment(Fragment fragment){ // Замена фрагмента
+    public void replaceFragment(Fragment fragment) { // Замена фрагмента
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_layout,fragment);
+        fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
 
-    private void getIntentMain(){
+    private void getIntentMain() {
         Intent i = getIntent();
-        if (i!=null) {
+        if (i != null) {
+            newLevel = i.getBooleanExtra(Constants.NEW_LEVEL_KEY, false);
+            if (newLevel) {
+                return;
+            }
             int chapter = i.getIntExtra(Constants.CHAPTER_KEY, -1);
             int lesson = i.getIntExtra(Constants.LESSON_KEY, -1);
-            if (chapter!=-1) {
+            if (chapter != -1) {
                 replaceFragment(new CurrentLessonFragment(chapter, lesson));
             }
-            launch_without_sign = i.getBooleanExtra(Constants.LAUNCHED_WITHOUT_SIGN, false);
         }
     }
 
-    public void signOut(View view){
-        Toast.makeText(this,"Вы вышли из аккаунта "+FirebaseAuth.getInstance().getCurrentUser().getEmail(), Toast.LENGTH_LONG).show();
+    public void signOut(View view) {
+        Toast.makeText(this, "Вы вышли из аккаунта " + FirebaseAuth.getInstance().getCurrentUser().getEmail(), Toast.LENGTH_LONG).show();
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(this, LoginActivity.class));
     }

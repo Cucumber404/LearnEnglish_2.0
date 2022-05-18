@@ -25,9 +25,10 @@ public class LearnActivity extends AppCompatActivity {
     ImageButton backToLesson;
     TextView englishWord, russianWord;
     public static List<Word> currentLessonWordsArr = CurrentLessonFragment.currentLessonWordsArr;
-    List<Integer> used_values;
+    List<Integer> usedValues;
     ImageView wordPic;
     ProgressBar progressBar;
+    Boolean newLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,8 +54,8 @@ public class LearnActivity extends AppCompatActivity {
 
     private void setMemoBtnListener() {
         btMemo.setOnClickListener(b -> {
-            used_values.add(index);
-            if (used_values.size() < 10) {
+            usedValues.add(index);
+            if (usedValues.size() < 10) {
                 setNewWords();
             } else {
                 Intent intent = new Intent(this, MainActivity.class);
@@ -68,10 +69,10 @@ public class LearnActivity extends AppCompatActivity {
 
     private void setNewWords() {
         progressBar.setVisibility(View.VISIBLE);
-        if (used_values.size() != 0) {
+        if (usedValues.size() != 0) {
             do {
                 index = (int) (Math.random() * 10);
-            } while (used_values.contains(index));
+            } while (usedValues.contains(index));
         } else {
             index = (int) (Math.random() * 10);
         }
@@ -96,7 +97,7 @@ public class LearnActivity extends AppCompatActivity {
         getIntentLearn();
         englishWord = findViewById(R.id.english_word_learn);
         russianWord = findViewById(R.id.russian_word_learn);
-        used_values = new ArrayList<>();
+        usedValues = new ArrayList<>();
         btMemo = findViewById(R.id.bt_next);
         backToLesson = findViewById(R.id.imageButtonToLesson);
         wordPic = findViewById(R.id.word_image);
@@ -107,8 +108,8 @@ public class LearnActivity extends AppCompatActivity {
     private void getIntentLearn() {
         Intent i = getIntent();
         if (i != null) {
-            chapter = i.getIntExtra("chapter", -1);
-            lesson = i.getIntExtra("lesson", -1);
+            chapter = i.getIntExtra(Constants.CHAPTER_KEY, -1);
+            lesson = i.getIntExtra(Constants.LESSON_KEY, -1);
         }
     }
 }

@@ -10,4 +10,5 @@ public class Constants {
     public static final int FRAGMENT_PROFILE_ID = R.id.profile;
     public static final int FRAGMENT_SETTINGS_ID = R.id.settings;
     public static final String LAUNCHED_WITHOUT_SIGN = "without_sign_launch";
+    public static final String NEW_LEVEL_KEY = "new level";
 }
