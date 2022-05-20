@@ -19,4 +19,6 @@
     <color name="red">#DB1608</color>
     <color name="dark_green">#105112</color>
     <color name="grey">#7B7898</color>
+    <color name="light_grey">#a9a9a9</color>
+    <color name="light_dark_grey">#949494</color>
 </resources>

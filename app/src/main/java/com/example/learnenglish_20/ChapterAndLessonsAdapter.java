@@ -3,6 +3,7 @@ package com.example.learnenglish_20;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,19 +41,26 @@ public class ChapterAndLessonsAdapter extends RecyclerView.Adapter<ChapterAndLes
         holder.item.setText(chaptersOrLessons.get(position));
 
         if (chaptersOrLessons.get(0).equals("Глава 1")) {
-            if(position+1<=HomeFragment.chapterProgress) {
+            if (position + 1 <= HomeFragment.chapterProgress) { // Зеленый если до или равен прогрессу
                 holder.item.setBackgroundColor(Color.parseColor("#47BF32"));
-            }else {
+            } else if (position + 1 == HomeFragment.chapterProgress + 1) { //Синий если на 1 больше прогресса
                 holder.item.setBackgroundColor(Color.parseColor("#46bee6"));
+            } else {
+                holder.item.setBackgroundColor(Color.parseColor("#c0c0c0"));
             }
         } else {
-            if((position*10+1+HomeFragment.clickedChapter*100)<=HomeFragment.lessonsProgress) {
-                Log.d("lessons progress", String.valueOf(HomeFragment.lessonsProgress));
+            if ((position * 10 + 1 + HomeFragment.clickedChapter * 100) <= HomeFragment.lessonsProgress) {
                 holder.item.setBackgroundColor(Color.parseColor("#47BF32"));
-            }else {
+            } else if ((position * 10 + 1 + HomeFragment.clickedChapter * 100) == HomeFragment.lessonsProgress + 1) {
                 holder.item.setBackgroundColor(Color.parseColor("#46bee6"));
+            } else {
+                holder.item.setBackgroundColor(Color.parseColor("#c0c0c0"));
             }
         }
+
+        holder.item.setOnClickListener(b -> {
+
+        });
     }
 
     @Override

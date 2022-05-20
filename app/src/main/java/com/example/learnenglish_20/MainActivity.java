@@ -89,3 +89,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, LoginActivity.class));
     }
 }
+
+//TODO:
+//        Сделать чтобы пройденные не засчитывались в прогресс,
+//        Дизайн стартовой страницы
+//        История

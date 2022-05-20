@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -64,8 +65,12 @@ public class HomeFragment extends Fragment {
                 new RecyclerItemClickListener(getActivity().getApplicationContext(), modulesRecView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        clickedChapter=position;
-                        replaceFragment(new LessonsFragment(position));
+                        if ((position + 1 <= chapterProgress + 1)) {
+                            clickedChapter = position;
+                            replaceFragment(new LessonsFragment(position));
+                        } else {
+                            Toast.makeText(getActivity().getApplicationContext(), "Эта глава еще не открыта!", Toast.LENGTH_LONG).show();
+                        }
                     }
 
                     @Override

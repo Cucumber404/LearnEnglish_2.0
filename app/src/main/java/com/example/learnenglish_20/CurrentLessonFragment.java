@@ -51,6 +51,10 @@ public class CurrentLessonFragment extends Fragment {
 
         initRuEnButton(view);
 
+        initBtTest(view);
+    }
+
+    private void initBtTest(View view) {
         btTest = view.findViewById(R.id.bt_test);
         btTest.setOnClickListener(b -> {
             Intent intent = new Intent(getActivity().getApplicationContext(), TestActivity.class);

@@ -29,7 +29,7 @@ public class TestActivity extends AppCompatActivity {
     private List<Word> currentLessonWordsArr = CurrentLessonFragment.currentLessonWordsArr;
     private List<Integer> usedIndexes = new ArrayList<>(0);
     private Word currentWordTest;
-    private int chapter,lesson;
+    private int chapter, lesson;
     private ImageButton imageButtonBackToCurrent;
 
 
@@ -38,47 +38,58 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         init();
-//        initEnterListener();
         setCheckBtListener();
-        imageButtonBackToCurrent.setOnClickListener(b->{
+        setBackToCurrBtList();
+    }
+
+    private void setBackToCurrBtList() {
+        imageButtonBackToCurrent.setOnClickListener(b -> {
             Intent intent = initIntent();
             startActivity(intent);
         });
     }
 
     private void setCheckBtListener() {
-        btCheckTest.setOnClickListener(b->{
-            if(testEditText.getText().toString().equalsIgnoreCase(currentWordTest.getEnglish()) && !(TextUtils.isEmpty(testEditText.getText().toString()))){
+        btCheckTest.setOnClickListener(b -> {
+            if (testEditText.getText().toString().equalsIgnoreCase(currentWordTest.getEnglish()) && !(TextUtils.isEmpty(testEditText.getText().toString()))) {
                 testEditText.setText("");
-                if(usedIndexes.size()<10){
+                if (usedIndexes.size() < 10) {
                     testCheck.setText("");
                     setNewWord();
-                }else{
-                    if(true) {//Сделать логику что пройденные не считаются
-                        DataBase.progress += 10;
-                        DataBase.updateProgress(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-                    }
-                    if(DataBase.progress%100==0){
-                        Intent intent = new Intent(this, MainActivity.class);
-                        intent.putExtra(Constants.NEW_LEVEL_KEY, true);
-                        startActivity(intent);
-                        return;
-                    }
-                    Toast.makeText(this, "Поздравляю, вы прошли тест!", Toast.LENGTH_LONG).show();
-                    Intent intent = initIntent();
-                    startActivity(intent);
+                } else {
+                    finishTest();
                 }
-            }else if (!(TextUtils.isEmpty(testEditText.getText().toString()))){
-                mistakes++;
-                if(mistakes==3){
-                    Intent intent = initIntent();
-                    Toast.makeText(this, "3 ошибки: попробуйте подучить слова", Toast.LENGTH_LONG).show();
-                    startActivity(intent);
-                }
+            } else if (!(TextUtils.isEmpty(testEditText.getText().toString()))) {
+                updateMistakes();
                 threadSleep();
                 testCheck.setText("Неверно");
             }
         });
+    }
+
+    private void updateMistakes() {
+        mistakes++;
+        if (mistakes == 3) {
+            Intent intent = initIntent();
+            Toast.makeText(this, "3 ошибки: попробуйте подучить слова", Toast.LENGTH_LONG).show();
+            startActivity(intent);
+        }
+    }
+
+    private void finishTest() {
+        if (chapter * 100 + lesson * 10 == DataBase.progress) {//Условие что пройденные не считаются
+            DataBase.progress += 10;
+            DataBase.updateProgress(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+            if (DataBase.progress % 100 == 0) {
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra(Constants.NEW_LEVEL_KEY, true);
+                startActivity(intent);
+                return;
+            }
+        }
+        Toast.makeText(this, "Поздравляю, вы прошли тест!", Toast.LENGTH_LONG).show();
+        Intent intent = initIntent();
+        startActivity(intent);
     }
 
     @NonNull
@@ -97,7 +108,7 @@ public class TestActivity extends AppCompatActivity {
         }
     }
 
-    private void setNewWord(){
+    private void setNewWord() {
         int index;
         if (usedIndexes.size() != 0) {
             do {
@@ -111,24 +122,14 @@ public class TestActivity extends AppCompatActivity {
         usedIndexes.add(index);
     }
 
-    private void initEnterListener() {
-        testEditText.setOnEditorActionListener((v, actionId, event) -> {
-            if(event != null && event.getKeyCode() == KeyEvent.KEYCODE_ENTER){
-                // обработка нажатия Enter
-                return true;
-            }
-            return false;
-        });
-    }
-
     private void init() {
-        testCheck=findViewById(R.id.test_text_check);
-        imageButtonBackToCurrent=findViewById(R.id.imageButtonToCurrent);
+        testCheck = findViewById(R.id.test_text_check);
+        imageButtonBackToCurrent = findViewById(R.id.imageButtonToCurrent);
+        btCheckTest = findViewById(R.id.test_check_bt);
+        testEditText = findViewById(R.id.test_edit_text);
+        testText = findViewById(R.id.test_text);
         usedIndexes.clear();
-        mistakes=0;
-        btCheckTest=findViewById(R.id.test_check_bt);
-        testEditText=findViewById(R.id.test_edit_text);
-        testText=findViewById(R.id.test_text);
+        mistakes = 0;
         setNewWord();
         getIntentLearn();
     }

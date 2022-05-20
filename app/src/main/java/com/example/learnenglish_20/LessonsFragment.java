@@ -12,10 +12,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-public class LessonsFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class LessonsFragment extends Fragment {
 
     private int chapter;
     private ArrayList<String> lessonsArr;
@@ -59,7 +60,10 @@ public class LessonsFragment extends Fragment implements AdapterView.OnItemClick
                 new RecyclerItemClickListener(getActivity().getApplicationContext(), lessonsRecView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        replaceFragment(new CurrentLessonFragment(chapter, position));
+                        if ((position * 10 + 1 + HomeFragment.clickedChapter * 100 <= HomeFragment.lessonsProgress + 1))
+                            replaceFragment(new CurrentLessonFragment(chapter, position));
+                        else
+                            Toast.makeText(getActivity().getApplicationContext(), "Этот урок еще не открыт!", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -70,10 +74,10 @@ public class LessonsFragment extends Fragment implements AdapterView.OnItemClick
         ;
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        replaceFragment(new CurrentLessonFragment(chapter, position));
-    }
+//    @Override
+//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//        replaceFragment(new CurrentLessonFragment(chapter, position));
+//    }
 
     public void replaceFragment(Fragment fragment) { // Замена фрагмента
         FragmentManager fragmentManager = getFragmentManager();

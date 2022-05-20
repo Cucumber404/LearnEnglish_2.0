@@ -1,4 +1,4 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.modal;
 
 public class User {
 
