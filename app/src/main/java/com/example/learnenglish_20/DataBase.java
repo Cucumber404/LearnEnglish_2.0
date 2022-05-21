@@ -20,10 +20,6 @@ import java.util.List;
 
 public class DataBase {
 
-    static {
-        new DataBase();
-    }
-
     public DatabaseReference mWordDataBase;
     public static DatabaseReference mUserDataBase;
     private final String WORD_KEY = "Word";
@@ -34,6 +30,12 @@ public class DataBase {
     public static String[] englishWordsArr; // При необходимости изменения данных в базе заполнить данные массивы
     public static String[] russianWordsArr; // и вызвать pushInDB
     public static int progress;
+    public static boolean isFirstTime;
+    public static boolean flagGotUser=false;
+
+    static {
+        new DataBase();
+    }
 
     DataBase() {
         mWordDataBase = FirebaseDatabase.getInstance().getReference(WORD_KEY);
@@ -51,14 +53,7 @@ public class DataBase {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    while(true) {
-                        try {
-                            myCurrentUser = ds.getValue(User.class);
-                            break;
-                        }catch (Exception e){
-                            e.printStackTrace();
-                        }
-                    }
+                    myCurrentUser = ds.getValue(User.class);
                     assert myCurrentUser != null;
                     if (myCurrentUser.geteMail().equals(eMail)) {
                         break;
@@ -67,8 +62,9 @@ public class DataBase {
                 //Когда код доходит до сюда, вся информация уже загружена, то
                 //есть можно отследить момент загрузки (важно!!!)
                 progress = Integer.parseInt(String.valueOf(myCurrentUser.getProgress()));
+                isFirstTime=myCurrentUser.isFirstTime();
+                flagGotUser=true;
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
@@ -77,14 +73,14 @@ public class DataBase {
         mUserDataBase.addValueEventListener(vListener);
     }
 
-    public static void updateProgress(String eMail) {
+    public static void updateProgress() {
         ValueEventListener vListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
                     myCurrentUser = ds.getValue(User.class);
                     assert myCurrentUser != null;
-                    if (myCurrentUser.geteMail().equals(eMail)) {
+                    if (myCurrentUser.geteMail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
                         ds.child("progress").getRef().setValue(String.valueOf(progress));
                         break;
                     }
@@ -102,17 +98,25 @@ public class DataBase {
         mUserDataBase.addValueEventListener(vListener);
     }
 
-    public static void updateProgress2(){
-        HashMap user = new HashMap();
-        user.put("progress", String.valueOf(progress));
-
-        mUserDataBase.child(myCurrentUser.geteMail()).updateChildren(user).addOnCompleteListener(task->{
-            if(task.isSuccessful()){
-                Log.d("update","success");
-            }else{
-                Log.d("update","success");
+    public static void updateFirstTime() {
+        ValueEventListener vListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    User tempUser = ds.getValue(User.class);
+                    assert tempUser != null;
+                    if (tempUser.geteMail().equals(myCurrentUser.geteMail())) {
+                        ds.child("firstTime").getRef().setValue(false);
+                        break;
+                    }
+                }
+                //Когда код доходит до сюда, вся информация уже загружена, то
+                //есть можно отследить момент загрузки (важно!!!)
             }
-        });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {}
+        };
+        mUserDataBase.addValueEventListener(vListener);
     }
 
     private void getDataFromDB() {
@@ -147,7 +151,7 @@ public class DataBase {
     public static void pushUserInDB(String eMail) { // При необходимости
         mUserDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
         String id = mUserDataBase.getKey();
-        User user = new User(id, "0", eMail);
+        User user = new User(id, "0", eMail,true);
         mUserDataBase.push().setValue(user);
     }
 

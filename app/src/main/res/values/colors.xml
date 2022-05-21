@@ -6,6 +6,7 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
+    <color name="half_transparent_black">#1B000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="bg_main">#F1F1F1</color>
     <color name="purple_700_light">#46bee6</color>
@@ -21,4 +22,5 @@
     <color name="grey">#7B7898</color>
     <color name="light_grey">#a9a9a9</color>
     <color name="light_dark_grey">#949494</color>
+    <color name="fiolet">#7241CA</color>
 </resources>

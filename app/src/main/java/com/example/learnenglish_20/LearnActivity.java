@@ -46,8 +46,8 @@ public class LearnActivity extends AppCompatActivity {
     private void setCtBackClickListener() {
         backToLesson.setOnClickListener(b -> {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra("chapter", chapter);
-            intent.putExtra("lesson", lesson);
+            intent.putExtra(Constants.CHAPTER_KEY, chapter);
+            intent.putExtra(Constants.LESSON_KEY, lesson);
             startActivity(intent);
         });
     }

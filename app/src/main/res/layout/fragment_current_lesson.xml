@@ -132,5 +132,14 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/instruct_bt_one"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="@string/inst_sec"
+        android:backgroundTint="@color/half_transparent_black"
+        android:textSize="30sp"
+        android:textAllCaps="false"
+        />
 
 </FrameLayout>

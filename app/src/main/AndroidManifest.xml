@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LearnEnglish_20">
         <activity
+            android:name=".StoryActivity"
+            android:exported="false" />
+        <activity
             android:name=".TestActivity"
             android:exported="false" />
         <activity

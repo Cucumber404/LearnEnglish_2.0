@@ -85,6 +85,8 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Ошибка при регистрации",Toast.LENGTH_LONG).show();
                 }
             });
+        }else{
+            Toast.makeText(getApplicationContext(), "Заполните поля", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -108,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(this, "Неверные данные для входа", Toast.LENGTH_LONG).show();
                 }
             });
-
         }else{
             Toast.makeText(getApplicationContext(), "Заполните поля", Toast.LENGTH_LONG).show();
         }

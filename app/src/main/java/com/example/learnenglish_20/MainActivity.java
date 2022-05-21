@@ -1,5 +1,6 @@
 package com.example.learnenglish_20;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -11,19 +12,27 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.learnenglish_20.databinding.ActivityMainBinding;
+import com.example.learnenglish_20.modal.User;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding; // В binding будут все элементы дизайна у которых есть id
-    private boolean firstTimeLaunching;
     private boolean newLevel;
+    private boolean fromStory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater()); //Создаем объект класса ResultProfileBinding – в binding все id
         setContentView(binding.getRoot()); // Корневая id – Activity main
+
+        if(fromStory){
+            startInstruction();
+        }
 
         init();
 
@@ -36,9 +45,44 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setBottomNavListener();
+        getFirstTimeFromDB();
 
     }
 
+    public void getFirstTimeFromDB() {
+        ValueEventListener vListener = new ValueEventListener() {
+            User tempUser;
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    tempUser = ds.getValue(User.class);
+                    assert tempUser != null;
+                    if (tempUser.geteMail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                        break;
+                    }
+                }
+                //Когда код доходит до сюда, вся информация уже загружена, то
+                //есть можно отследить момент загрузки (важно!!!)
+                if(tempUser.isFirstTime()) {
+                    startStory();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        DataBase.mUserDataBase.addValueEventListener(vListener);
+    }
+
+    private void startInstruction() {
+
+    }
+
+    public void startStory() {
+        Intent intent = new Intent(this, StoryActivity.class);
+        startActivity(intent);
+    }
 
     private void setBottomNavListener() {
         binding.bottomNavigationView.setOnItemSelectedListener(item -> { // Слушатель нажатия на  bottomNavigationView
@@ -80,6 +124,7 @@ public class MainActivity extends AppCompatActivity {
             if (chapter != -1) {
                 replaceFragment(new CurrentLessonFragment(chapter, lesson));
             }
+            fromStory = i.getBooleanExtra(Constants.FROM_STORY, false);
         }
     }
 
@@ -91,6 +136,4 @@ public class MainActivity extends AppCompatActivity {
 }
 
 //TODO:
-//        Сделать чтобы пройденные не засчитывались в прогресс,
-//        Дизайн стартовой страницы
-//        История
+//  обучение

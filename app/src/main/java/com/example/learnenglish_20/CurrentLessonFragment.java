@@ -19,6 +19,7 @@ import java.util.List;
 
 
 public class CurrentLessonFragment extends Fragment {
+    //В кнопке назад исправить конструктор везде
 
     private int chapter;
     private int lesson;
@@ -36,7 +37,7 @@ public class CurrentLessonFragment extends Fragment {
         return view;
     }
 
-//    public CurrentLessonFragment(){}
+    public CurrentLessonFragment(){}
 
     private void init(Bundle savedInstanceState, View view) {
         initBackButton(view);
@@ -134,5 +135,4 @@ public class CurrentLessonFragment extends Fragment {
         fragmentTransaction.replace(R.id.frame_layout, fragment);
         fragmentTransaction.commit();
     }
-
 }

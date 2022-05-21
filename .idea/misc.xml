@@ -13,14 +13,16 @@
         <entry key="app/src/main/res/drawable/separator.xml" value="0.1935" />
         <entry key="app/src/main/res/layout/activity_cards.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_learn.xml" value="0.1" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.29979620645212574" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_login2.xml" value="0.2711714987683555" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_story.xml" value="0.23444444462656977" />
         <entry key="app/src/main/res/layout/activity_test.xml" value="0.25226449275362317" />
         <entry key="app/src/main/res/layout/fragment_current_lesson.xml" value="0.318472221493721" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_learn.xml" value="0.23777173913043478" />
         <entry key="app/src/main/res/layout/fragment_lessons.xml" value="0.14125671386718752" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.2223731884057971" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_settings.xml" value="0.2223731884057971" />
         <entry key="app/src/main/res/layout/lessons_fragment.xml" value="0.2513586956521739" />
         <entry key="app/src/main/res/layout/modules_lessons_list.xml" value="0.23998413085937506" />

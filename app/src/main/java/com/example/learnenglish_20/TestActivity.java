@@ -79,7 +79,7 @@ public class TestActivity extends AppCompatActivity {
     private void finishTest() {
         if (chapter * 100 + lesson * 10 == DataBase.progress) {//Условие что пройденные не считаются
             DataBase.progress += 10;
-            DataBase.updateProgress(FirebaseAuth.getInstance().getCurrentUser().getEmail());
+            DataBase.updateProgress();
             if (DataBase.progress % 100 == 0) {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra(Constants.NEW_LEVEL_KEY, true);
