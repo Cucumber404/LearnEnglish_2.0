@@ -1,4 +1,6 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.support;
+
+import com.example.learnenglish_20.R;
 
 public class Constants {
     public static final String ORDER_KEY = "order";

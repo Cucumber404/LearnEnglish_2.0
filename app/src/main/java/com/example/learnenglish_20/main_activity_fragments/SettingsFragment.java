@@ -1,4 +1,4 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.main_activity_fragments;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.learnenglish_20.R;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class SettingsFragment extends Fragment {

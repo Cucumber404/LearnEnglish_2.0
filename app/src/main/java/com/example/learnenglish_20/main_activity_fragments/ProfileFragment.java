@@ -1,4 +1,4 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.main_activity_fragments;
 
 import android.os.Bundle;
 
@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.example.learnenglish_20.data.DataBase;
+import com.example.learnenglish_20.R;
 
 public class ProfileFragment extends Fragment {
 

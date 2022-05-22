@@ -1,4 +1,4 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.main_activity_fragments;
 
 import android.os.Bundle;
 
@@ -10,9 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.Toast;
+
+import com.example.learnenglish_20.support.ChapterAndLessonsAdapter;
+import com.example.learnenglish_20.R;
+import com.example.learnenglish_20.support.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 

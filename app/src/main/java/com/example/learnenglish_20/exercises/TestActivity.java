@@ -1,21 +1,23 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.exercises;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.learnenglish_20.support.Constants;
+import com.example.learnenglish_20.data.DataBase;
+import com.example.learnenglish_20.main_activity_fragments.MainActivity;
+import com.example.learnenglish_20.main_activity_fragments.CurrentLessonFragment;
+import com.example.learnenglish_20.R;
+import com.example.learnenglish_20.data.Word;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.exercises;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,11 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.learnenglish_20.support.Constants;
+import com.example.learnenglish_20.main_activity_fragments.MainActivity;
+import com.example.learnenglish_20.main_activity_fragments.CurrentLessonFragment;
+import com.example.learnenglish_20.R;
+import com.example.learnenglish_20.data.Word;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 

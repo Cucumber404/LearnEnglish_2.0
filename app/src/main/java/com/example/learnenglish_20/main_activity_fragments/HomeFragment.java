@@ -1,4 +1,4 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.main_activity_fragments;
 
 import android.os.Bundle;
 
@@ -10,11 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.learnenglish_20.support.ChapterAndLessonsAdapter;
+import com.example.learnenglish_20.data.DataBase;
+import com.example.learnenglish_20.R;
+import com.example.learnenglish_20.support.RecyclerItemClickListener;
 
 import java.util.ArrayList;
 
@@ -57,7 +61,7 @@ public class HomeFragment extends Fragment {
 
     private void initProgress(){
         chapterProgress=0;
-        entireProgress=DataBase.progress;
+        entireProgress= DataBase.progress;
         lessonsProgress=entireProgress;
         while(entireProgress>99){
             chapterProgress+=1;

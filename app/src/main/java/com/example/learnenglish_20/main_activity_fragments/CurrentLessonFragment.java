@@ -1,4 +1,4 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.main_activity_fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.example.learnenglish_20.exercises.CardsActivity;
+import com.example.learnenglish_20.support.Constants;
+import com.example.learnenglish_20.data.DataBase;
+import com.example.learnenglish_20.exercises.LearnActivity;
+import com.example.learnenglish_20.R;
+import com.example.learnenglish_20.exercises.TestActivity;
+import com.example.learnenglish_20.data.Word;
 
 import java.util.ArrayList;
 import java.util.List;

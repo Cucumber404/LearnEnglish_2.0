@@ -1,4 +1,4 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.main_activity_fragments;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.learnenglish_20.R;
+import com.example.learnenglish_20.data.Word;
 
 import java.util.List;
 
@@ -26,7 +29,7 @@ public class WordPairAdapter extends RecyclerView.Adapter<WordPairAdapter.ViewHo
     @Override
     public WordPairAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = inflater.inflate(R.layout.words_list_layout, parent, false);
+        View view = inflater.inflate(R.layout.words_list, parent, false);
         return new ViewHolder(view);
     }
 

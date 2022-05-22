@@ -1,10 +1,7 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.support;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.learnenglish_20.main_activity_fragments.HomeFragment;
+import com.example.learnenglish_20.R;
 
 import java.util.ArrayList;
 

@@ -12,13 +12,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LearnEnglish_20">
         <activity
-            android:name=".StoryActivity"
+            android:name=".start_activities.StoryActivity"
             android:exported="false" />
         <activity
-            android:name=".TestActivity"
+            android:name=".exercises.TestActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".start_activities.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,13 +27,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CardsActivity"
+            android:name=".exercises.CardsActivity"
             android:exported="false" />
         <activity
-            android:name=".LearnActivity"
+            android:name=".exercises.LearnActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".main_activity_fragments.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.main_activity_fragments;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,13 +9,16 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.learnenglish_20.support.Constants;
+import com.example.learnenglish_20.data.DataBase;
+import com.example.learnenglish_20.R;
+import com.example.learnenglish_20.data.User;
+import com.example.learnenglish_20.start_activities.LoginActivity;
 import com.example.learnenglish_20.databinding.ActivityMainBinding;
-import com.example.learnenglish_20.modal.User;
+import com.example.learnenglish_20.start_activities.StoryActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;

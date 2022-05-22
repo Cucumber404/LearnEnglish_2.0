@@ -1,11 +1,7 @@
-package com.example.learnenglish_20;
-
-import android.util.Log;
-import android.view.View;
+package com.example.learnenglish_20.data;
 
 import androidx.annotation.NonNull;
 
-import com.example.learnenglish_20.modal.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,7 +12,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class DataBase {
@@ -152,7 +147,7 @@ public class DataBase {
     public static void pushUserInDB(String eMail) { // При необходимости
         mUserDataBase = FirebaseDatabase.getInstance().getReference(USER_KEY);
         String id = mUserDataBase.getKey();
-        User user = new User(id, "0", eMail,true);
+        User user = new User(id, String.valueOf(0), eMail,true);
         mUserDataBase.push().setValue(user);
     }
 

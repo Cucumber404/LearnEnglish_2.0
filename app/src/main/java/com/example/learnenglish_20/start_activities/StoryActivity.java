@@ -1,15 +1,18 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.start_activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.learnenglish_20.support.Constants;
+import com.example.learnenglish_20.data.DataBase;
+import com.example.learnenglish_20.main_activity_fragments.MainActivity;
+import com.example.learnenglish_20.R;
 
 public class StoryActivity extends AppCompatActivity {
     public int count = 0;

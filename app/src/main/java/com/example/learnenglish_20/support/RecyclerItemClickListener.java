@@ -1,4 +1,4 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.support;
 
 import android.content.Context;
 import android.view.GestureDetector;

@@ -1,16 +1,19 @@
-package com.example.learnenglish_20;
+package com.example.learnenglish_20.start_activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.learnenglish_20.support.Constants;
+import com.example.learnenglish_20.data.DataBase;
+import com.example.learnenglish_20.main_activity_fragments.MainActivity;
+import com.example.learnenglish_20.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -69,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         currentUser = mAuth.getCurrentUser(); // Если не зареган, то null
         if(currentUser!=null && currentUser.isEmailVerified()){
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra(Constants.LAUNCHED_WITHOUT_SIGN,true);
             startActivity(intent);
         }
@@ -97,8 +100,8 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     assert user != null;
                     if (task.isSuccessful()) {
-                        Toast.makeText(this, "Вы успешно вошли!", Toast.LENGTH_LONG).show();
                         if(user.isEmailVerified()) {
+                            Toast.makeText(this, "Вы успешно вошли!", Toast.LENGTH_LONG).show();
                             startActivity(new Intent(this, MainActivity.class));
                         }else{
                             Toast.makeText(getApplicationContext(), "Подтвердите почту", Toast.LENGTH_LONG).show();
