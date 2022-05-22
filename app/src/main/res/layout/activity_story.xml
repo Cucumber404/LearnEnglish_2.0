@@ -11,16 +11,30 @@
     android:focusableInTouchMode="true"
     tools:context=".StoryActivity">
 
-    <Button
-        android:id="@+id/story_bt"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text=""
-        android:background="@android:color/transparent"/>
 
     <ImageView
         android:id="@+id/story_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/story_first" />
+
+    <TextView
+        android:id="@+id/text_story"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/inst_one"
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="20dp"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/story_bt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:text="" />
+
 </RelativeLayout>

@@ -7,78 +7,114 @@
     tools:context=".CurrentLessonFragment"
     android:background="@color/bg_main">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/words_recycler_list"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="80dp"
-        android:layout_marginHorizontal="25dp"
-        android:layout_marginBottom="190dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        android:layout_height="match_parent">
 
-        />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="25dp"
+
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/first_lin_lay_less"
+            tools:layout_editor_absoluteX="25dp">
+
+            <Button
+                android:id="@+id/bt_test"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/blue"
+                android:text="@string/bt_test" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/first_lin_lay_less"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginHorizontal="25dp"
+            android:layout_marginTop="41dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/words_recycler_list"
+            tools:layout_editor_absoluteX="25dp">
+
+            <Button
+                android:id="@+id/bt_learn"
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="15dp"
+                android:layout_weight="0.01"
+                android:backgroundTint="@color/purple_700_light"
+                android:text="@string/bt_learn" />
+
+            <Button
+                android:id="@+id/bt_cards_en_ru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/purple_700_light"
+                android:text="@string/bt_cards" />
+
+            <Button
+                android:id="@+id/bt_cards_ru_en"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_weight="1"
+                android:backgroundTint="@color/purple_700_light"
+                android:text="@string/bt_cards_ru_en" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/imageButtonToLesson"
+            android:layout_width="48dp"
+            android:layout_height="49dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/bg_main"
+            android:backgroundTint="@color/bg_main"
+            android:src="@drawable/ic_baseline_arrow_back_ios_24"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/chewy"
+            android:text="@string/top_text"
+            android:textAlignment="center"
+            android:textColor="@color/purple_700"
+            android:textSize="45sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/words_recycler_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="25dp"
+
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="200dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toTopOf="@+id/first_lin_lay_less"
+            app:layout_constraintTop_toBottomOf="@+id/textView"
+            tools:layout_editor_absoluteX="25dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <!--
         Recycler View https://metanit.com/java/android/5.11.php
     -->
 
 
-    <ImageButton
-        android:id="@+id/imageButtonToLesson"
-        android:layout_width="48dp"
-        android:layout_height="49dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:background="@color/bg_main"
-        android:backgroundTint="@color/bg_main"
-        android:src="@drawable/ic_baseline_arrow_back_ios_24"
-        tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="101sp"
-        android:fontFamily="@font/chewy"
-        android:text="@string/top_text"
-        android:textColor="@color/purple_700"
-        android:textSize="45sp" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="450dp"
-        android:layout_marginHorizontal="25dp"
-        >
-        <Button
-            android:id="@+id/bt_learn"
-            android:layout_width="wrap_content"
-            android:layout_height="56dp"
-            android:layout_weight="0.01"
-            android:text="@string/bt_learn"
-            android:layout_marginEnd="15dp"
-            android:backgroundTint="@color/purple_700_light"
-            android:layout_marginTop="8dp"
-            />
-
-        <Button
-            android:id="@+id/bt_cards_en_ru"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/bt_cards"
-            android:backgroundTint="@color/purple_700_light"/>
-
-        <Button
-            android:id="@+id/bt_cards_ru_en"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/bt_cards_ru_en"
-            android:layout_marginStart="15dp"
-            android:backgroundTint="@color/purple_700_light"/>
-    </LinearLayout>
-
-<!-- пока эти упражнения не готовы
+    <!-- пока эти упражнения не готовы
 <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
@@ -113,33 +149,5 @@
 <!--            android:layout_marginStart="15dp"-->
 <!--            android:backgroundTint="@color/purple_700_light"/>-->
 <!--    </LinearLayout>-->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="525dp"
-        android:layout_marginHorizontal="25dp"
-        >
-
-        <Button
-            android:id="@+id/bt_test"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/bt_test"
-            android:backgroundTint="@color/blue"/>
-
-    </LinearLayout>
-
-    <Button
-        android:id="@+id/instruct_bt_one"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/inst_sec"
-        android:backgroundTint="@color/half_transparent_black"
-        android:textSize="30sp"
-        android:textAllCaps="false"
-        />
 
 </FrameLayout>

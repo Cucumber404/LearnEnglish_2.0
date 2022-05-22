@@ -37,7 +37,7 @@ public class CurrentLessonFragment extends Fragment {
         return view;
     }
 
-    public CurrentLessonFragment(){}
+//    public CurrentLessonFragment(){}
 
     private void init(Bundle savedInstanceState, View view) {
         initBackButton(view);

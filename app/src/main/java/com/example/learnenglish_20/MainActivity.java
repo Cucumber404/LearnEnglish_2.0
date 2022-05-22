@@ -9,6 +9,9 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.learnenglish_20.databinding.ActivityMainBinding;
@@ -22,7 +25,8 @@ public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding; // В binding будут все элементы дизайна у которых есть id
     private boolean newLevel;
-    private boolean fromStory;
+    public static boolean fromStory;
+    public ProgressBar progressBarMain;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +34,10 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater()); //Создаем объект класса ResultProfileBinding – в binding все id
         setContentView(binding.getRoot()); // Корневая id – Activity main
 
-        if(fromStory){
-            startInstruction();
-        }
-
         init();
+        getFirstTimeFromDB();
 
-        replaceFragment(new ProfileFragment()); // Чтобы при открытии приложения показывался HomeFragment
+        replaceFragment(new ProfileFragment());
 
         getIntentMain();
 
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         setBottomNavListener();
-        getFirstTimeFromDB();
 
     }
 
@@ -75,10 +75,6 @@ public class MainActivity extends AppCompatActivity {
         DataBase.mUserDataBase.addValueEventListener(vListener);
     }
 
-    private void startInstruction() {
-
-    }
-
     public void startStory() {
         Intent intent = new Intent(this, StoryActivity.class);
         startActivity(intent);
@@ -103,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+
     }
 
     public void replaceFragment(Fragment fragment) { // Замена фрагмента

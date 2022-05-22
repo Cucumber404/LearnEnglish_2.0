@@ -8,29 +8,12 @@
     tools:context=".ProfileFragment"
     >
 
-    <Button
-        android:id="@+id/instruct_bt_one"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text=""
-        android:backgroundTint="@color/half_transparent_black"
-        />
+
 
     <ImageView
         android:id="@+id/current_progress_image"
         android:layout_width="match_parent"
         android:layout_height="663dp"
         app:srcCompat="@drawable/poor_state" />
-
-    <Button
-        android:id="@+id/instruct_bt_top"
-        android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:text="@string/inst_one"
-        android:backgroundTint="@android:color/transparent"
-        android:textAllCaps="false"
-        android:textSize="25dp"
-        />
-
 
 </FrameLayout>

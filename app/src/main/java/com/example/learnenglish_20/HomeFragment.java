@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -21,7 +24,9 @@ public class HomeFragment extends Fragment {
     private RecyclerView modulesRecView;
     public static int chapterProgress, lessonsProgress, entireProgress;
     public static int clickedChapter;
-
+    private Button btFromStory;
+    private TextView textFromStory;
+    public static ProgressBar progressBarMain;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, // Здесь указывается какой дизайн используется для фрагмента
                              Bundle savedInstanceState) {
@@ -29,10 +34,24 @@ public class HomeFragment extends Fragment {
 
         initChaptersArr(); // Определяем сколько глав у нас будет
 
+        progressBarMain=view.findViewById(R.id.progress_bar_home);
+
         initProgress();
 
         initModulesList(view); // Создаем список глав
-
+        btFromStory = view.findViewById(R.id.bt_instr_main);
+        textFromStory = view.findViewById(R.id.text_instr_main);
+        btFromStory.setVisibility(View.INVISIBLE);
+        textFromStory.setVisibility(View.INVISIBLE);
+        if(MainActivity.fromStory) {
+            textFromStory.setVisibility(View.VISIBLE);
+            btFromStory.setVisibility(View.VISIBLE);
+            btFromStory.setOnClickListener(b -> {
+                btFromStory.setVisibility(View.INVISIBLE);
+                textFromStory.setVisibility(View.INVISIBLE);
+            });
+            MainActivity.fromStory=false;
+        }
         return view;
     }
 
@@ -80,11 +99,6 @@ public class HomeFragment extends Fragment {
                 })
         );
     }
-
-//    @Override
-//    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//        replaceFragment(new LessonsFragment(position)); // При нажатии на главу открывается фрагмент с уроками
-//    }
 
     public void replaceFragment(Fragment fragment) { // Замена фрагмента
         FragmentManager fragmentManager = getFragmentManager();
