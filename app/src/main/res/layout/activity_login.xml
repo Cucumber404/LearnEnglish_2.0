@@ -8,11 +8,12 @@
     tools:context=".start_activities.LoginActivity">
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="match_parent"
-        android:textAlignment="center"
         android:layout_height="wrap_content"
         android:fontFamily="@font/chewy"
         android:text="@string/top_text"
+        android:textAlignment="center"
         android:textColor="@color/purple_700"
         android:textSize="45sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +24,7 @@
         android:id="@+id/login_login"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="68dp"
         android:ems="10"
         android:fontFamily="@font/chewy"
         android:hint="@string/login_email"
@@ -60,7 +61,7 @@
         android:id="@+id/login_bt_sign_up"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="272dp"
+        android:layout_marginTop="315dp"
         android:backgroundTint="@color/purple_700"
         android:onClick="onClickSignUp"
         android:text="@string/login_bt_sign_up"
@@ -69,11 +70,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_password" />
 
+
+
+    <Button
+        android:id="@+id/bt_reset_pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="315dp"
+        android:backgroundTint="@color/purple_700"
+        android:text="@string/bt_new_passw"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_password" />
     <Button
         android:id="@+id/login_bt_sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="1dp"
         android:backgroundTint="@color/purple_700"
         android:onClick="onClickSighIn"
         android:text="@string/login_bt_sign_in"
@@ -86,36 +100,33 @@
         android:id="@+id/bt_forgot_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="1dp"
         android:backgroundTint="@color/bg_main"
         android:text="@string/bt_forgot_password"
         android:textColor="@color/purple_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_bt_sign_in" />
-
-    <Button
-        android:id="@+id/bt_reset_pass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="488dp"
-        android:backgroundTint="@color/purple_700"
-        android:text="@string/bt_new_passw"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/bt_login_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="592dp"
+        android:layout_marginTop="1dp"
         android:backgroundTint="@color/bg_main"
         android:text="@string/bt_login_back"
         android:textColor="@color/purple_700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/login_bt_sign_in"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="394dp"
+        android:layout_height="644dp"
+        android:layout_marginTop="-25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView2"
+        app:srcCompat="@drawable/login_pic" />
 </androidx.constraintlayout.widget.ConstraintLayout>

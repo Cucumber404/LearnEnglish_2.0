@@ -29,6 +29,8 @@ public class ProfileFragment extends Fragment {
         if (DataBase.progress < 100) {
             currentStatePic.setImageResource(R.drawable.poor_state);
         } else if (DataBase.progress < 200) {
+            currentStatePic.setImageResource(R.drawable.medium_state);
+        } else if (DataBase.progress < 300) {
             currentStatePic.setImageResource(R.drawable.rich_state);
         }
     }
