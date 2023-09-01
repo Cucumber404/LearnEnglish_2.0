@@ -1,5 +1,5 @@
 # learn-words-android
-### Выпускной проект Samsung IT Академии – Android-приложение для изучения английского на java
+### Выпускной проект Samsung IT Академии по треку "Разработка мобильных приложений на языке Java" – Android-приложение для изучения английского
 
 Используемые технологии: БД – **Firebase Realtime Database, Firebase Storage**; загрузка картинок из Firebase – ** библиотека Picasso**. 
 
